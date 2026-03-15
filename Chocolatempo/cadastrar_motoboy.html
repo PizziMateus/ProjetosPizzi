@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CHOCOLATEMPO — Cadastrar Motoboy</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="favicon.svg" />
+</head>
+<body>
+  <div class="container">
+    <header class="header"><div class="brand"><div class="logo">C</div><div><h1>CHOCOLATEMPO</h1><div class="small">Painel Admin</div></div></div>
+    <nav class="nav"><a href="index.html">Home</a><a href="cadastrar_motoboy.html">Cadastrar Motoboy</a><a href="relatorio_vendas.html">Relatórios</a></nav>
+    <div class="menu-right"><button class="btn">Salvar</button></div></header>
+
+    <section style="margin-top:18px">
+      <div class="form-panel">
+        <h2>Novo Motoboy</h2>
+        <form class="form-grid">
+          <div>
+            <label>Nome completo</label>
+            <input class="input" />
+          </div>
+          <div>
+            <label>CPF</label>
+            <input class="input" />
+          </div>
+          <div>
+            <label>CNH (categoria)</label>
+            <input class="input" placeholder="A/B" />
+          </div>
+          <div>
+            <label>Venc. CNH</label>
+            <input type="date" class="input" />
+          </div>
+          <div>
+            <label>Renavam</label>
+            <input class="input" placeholder="Número do RENAVAM" />
+          </div>
+          <div>
+            <label>Telefone / WhatsApp</label>
+            <input class="input" />
+          </div>
+          <div>
+            <label>E-mail</label>
+            <input class="input" />
+          </div>
+          <div>
+            <label>Veículo</label>
+            <select><option>Moto</option><option>Bike</option><option>Carro</option></select>
+          </div>
+          <div>
+            <label>Placa</label>
+            <input class="input" />
+          </div>
+          <div class="full">
+            <label>Observações</label>
+            <textarea class="input" rows="3"></textarea>
+          </div>
+          <div class="full" style="display:flex;justify-content:flex-end;gap:10px;margin-top:8px">
+            <button type="reset" class="btn ghost">Limpar</button>
+            <button class="btn">Salvar Motoboy</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <footer class="footer"><div class="small">CHOCOLATEMPO</div><div class="small">© 2025</div></footer>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

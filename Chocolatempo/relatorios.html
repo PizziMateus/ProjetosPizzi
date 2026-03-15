@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CHOCOLATEMPO — Relatórios</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="header-wrapper">
+    <div class="header">
+      <div class="brand">
+        <div class="logo">🍫</div>
+        <div>
+          <h1>CHOCOLATEMPO</h1>
+          <div class="small">Os melhores chocolates — venda & sabor</div>
+        </div>
+      </div>
+      <nav class="nav">
+        <a href="index.html"><i class="fas fa-home"></i> Home</a>
+        <a href="produtos.html"><i class="fas fa-cookie"></i> Produtos</a>
+        <a href="cadastro_motoboy.html"><i class="fas fa-motorcycle"></i> Motoboys</a>
+        <a href="cadastro_fornecedor.html"><i class="fas fa-truck"></i> Fornecedores</a>
+        <a href="relatorios.html" class="active"><i class="fas fa-chart-line"></i> Relatórios</a>
+        <a href="carrinho.html"><i class="fas fa-shopping-cart"></i> Carrinho</a>
+      </nav>
+      <div class="menu-right">
+        <div class="small">Olá, Admin</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <h2 style="margin: 30px 0 20px;">Relatórios</h2>
+    <div class="grid">
+      <div class="card">
+        <div class="card-img"><i class="fas fa-chart-line"></i></div>
+        <h3>Vendas</h3>
+        <p>Veja o histórico de vendas realizadas.</p>
+        <button onclick="window.location.href='relatorio_venda.html'">Abrir</button>
+      </div>
+      <div class="card">
+        <div class="card-img"><i class="fas fa-shopping-cart"></i></div>
+        <h3>Compras</h3>
+        <p>Confira o registro de compras efetuadas.</p>
+        <button onclick="window.location.href='relatorio_compra.html'">Abrir</button>
+      </div>
+      <div class="card">
+        <div class="card-img"><i class="fas fa-boxes"></i></div>
+        <h3>Estoque</h3>
+        <p>Controle do estoque e produtos disponíveis.</p>
+        <button onclick="window.location.href='relatorio_estoque.html'">Abrir</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div>
+      <div class="small">CHOCOLATEMPO • Rua Exemplo, 123 — Cidade/UF</div>
+      <div class="small">contato@chocolatetempo.com • (00) 9 0000-0000</div>
+    </div>
+    <div class="small">© 2025 CHOCOLATEMPO — Todos os direitos reservados</div>
+  </footer>
+</body>
+</html>

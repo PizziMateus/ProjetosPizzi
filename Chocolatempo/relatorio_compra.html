@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CHOCOLATEMPO — Relatório de Compras</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="header-wrapper">
+    <div class="header">
+      <div class="brand">
+        <div class="logo">🍫</div>
+        <div>
+          <h1>CHOCOLATEMPO</h1>
+          <div class="small">Relatório de Compras</div>
+        </div>
+      </div>
+      <nav class="nav">
+               <a href="index.html"><i class="fas fa-home"></i> Home</a>
+        <a href="cadastro_produto.html"><i class="fas fa-cookie"></i> Produtos</a>
+        <a href="cadastro_motoboy.html"><i class="fas fa-motorcycle"></i> Motoboys</a>
+        <a href="cadastro_fornecedor.html"><i class="fas fa-truck"></i> Fornecedores</a>
+        <a href="relatorios.html"><i class="fas fa-chart-line"></i> Relatórios</a>
+        <a href="carrinho.html"><i class="fas fa-shopping-cart"></i> Carrinho</a>
+      </nav>
+    </div>
+  </div>
+
+  <div class="container">
+    <h2>Histórico de Compras</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Data</th>
+          <th>Fornecedor</th>
+          <th>Produto</th>
+          <th>Quantidade</th>
+          <th>Custo Total</th>
+        </tr>
+      </thead>
+      <tbody id="comprasTabela"></tbody>
+    </table>
+  </div>
+
+  <script>
+    function carregarCompras() {
+      const compras = [
+        { data: "01/09/2025", fornecedor: "Cacau Brasil", produto: "Trufa Clássica", quantidade: 20, total: "178,00" },
+        { data: "02/09/2025", fornecedor: "Doce Sabor", produto: "Tablete 70% Cacau", quantidade: 10, total: "125,00" },
+        { data: "03/09/2025", fornecedor: "Chocolate Mineiro", produto: "Bombom Caramelo", quantidade: 30, total: "195,00" },
+        { data: "04/09/2025", fornecedor: "Delícias da Serra", produto: "Chocolate Branco", quantidade: 15, total: "148,50" },
+        { data: "05/09/2025", fornecedor: "Cacau & Cia", produto: "Trufa Bela", quantidade: 25, total: "237,50" },
+        { data: "06/09/2025", fornecedor: "Cacau Brasil", produto: "Box 6 Sortidos", quantidade: 5, total: "249,50" },
+        { data: "07/09/2025", fornecedor: "Doce Sabor", produto: "Tablete Ao Leite", quantidade: 20, total: "158,00" },
+        { data: "08/09/2025", fornecedor: "Chocolate Mineiro", produto: "Bombom Amendoim", quantidade: 40, total: "236,00" },
+        { data: "09/09/2025", fornecedor: "Delícias da Serra", produto: "Trufa Clássica", quantidade: 10, total: "89,00" },
+        { data: "10/09/2025", fornecedor: "Cacau & Cia", produto: "Trufa Bela", quantidade: 12, total: "114,00" },
+        { data: "11/09/2025", fornecedor: "Doce Sabor", produto: "Bombom Caramelo", quantidade: 15, total: "97,50" },
+        { data: "12/09/2025", fornecedor: "Cacau Brasil", produto: "Chocolate Branco", quantidade: 10, total: "99,00" },
+        { data: "13/09/2025", fornecedor: "Chocolate Mineiro", produto: "Box 6 Sortidos", quantidade: 3, total: "149,70" },
+        { data: "14/09/2025", fornecedor: "Delícias da Serra", produto: "Tablete Ao Leite", quantidade: 18, total: "142,20" },
+        { data: "15/09/2025", fornecedor: "Cacau & Cia", produto: "Bombom Amendoim", quantidade: 25, total: "147,50" }
+      ];
+  
+      const tbody = document.getElementById("comprasTabela");
+      tbody.innerHTML = "";
+  
+      compras.forEach(c => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${c.data}</td>
+          <td>${c.fornecedor}</td>
+          <td>${c.produto}</td>
+          <td>${c.quantidade}</td>
+          <td>R$ ${c.total}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+  
+    carregarCompras();
+  </script>
+  
+</body>
+</html>

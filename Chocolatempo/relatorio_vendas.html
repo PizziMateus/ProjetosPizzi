@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CHOCOLATEMPO — Relatório de Vendas</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="favicon.svg" />
+</head>
+<body>
+  <div class="container">
+    <header class="header"><div class="brand"><div class="logo">C</div><div><h1>CHOCOLATEMPO</h1><div class="small">Relatório de Vendas</div></div></div>
+    <nav class="nav"><a href="index.html">Home</a><a href="relatorio_vendas.html">Vendas</a><a href="relatorio_compras.html">Compras</a><a href="relatorio_estoque.html">Estoque</a></nav>
+    <div class="menu-right"><button class="btn">Exportar</button></div></header>
+
+    <section style="margin-top:18px">
+      <div class="form-panel report-panel">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <h2>Vendas (simulação)</h2>
+          <div class="filter-row">
+            <input class="js-filter-input" placeholder="Pesquisar..." />
+            <select><option>Últimos 7 dias</option><option>Últimos 30 dias</option><option>Este mês</option></select>
+            <button class="btn">Filtrar</button>
+          </div>
+        </div>
+        <div class="table-panel" style="margin-top:12px">
+          <table class="table">
+            <thead>
+              <tr>
+                <th class="sortable">Nº</th>
+                <th class="sortable">Data</th>
+                <th class="sortable">Cliente</th>
+                <th class="sortable">Produto</th>
+                <th class="sortable">Qtd</th>
+                <th class="sortable">Preço</th>
+                <th class="sortable">Total</th>
+                <th class="sortable">Pagamento</th>
+                <th class="sortable">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>001</td><td>01/08/2025</td><td>João Silva</td><td>Box 6 Sortidos</td><td>1</td><td>R$ 49,90</td><td>R$ 49,90</td><td>Cartão</td><td>Concluído</td></tr>
+              <tr><td>002</td><td>03/08/2025</td><td>Mariana</td><td>Trufa Clássica</td><td>3</td><td>R$ 8,90</td><td>R$ 26,70</td><td>Dinheiro</td><td>Concluído</td></tr>
+              <tr><td>003</td><td>05/08/2025</td><td>Carlos</td><td>Tablete 70%</td><td>2</td><td>R$ 12,50</td><td>R$ 25,00</td><td>Pix</td><td>Cancelado</td></tr>
+              <tr><td>004</td><td>10/08/2025</td><td>Ana</td><td>Bombom Caramelo</td><td>5</td><td>R$ 6,50</td><td>R$ 32,50</td><td>Cartão</td><td>Pendente</td></tr>
+              <tr><td>005</td><td>10/08/2025</td><td>Ana</td><td>Bombom Caramelo</td><td>5</td><td>R$ 6,50</td><td>R$ 32,50</td><td>Cartão</td><td>Pendente</td></tr>
+              <tr><td>006</td><td>10/08/2025</td><td>Ana</td><td>Bombom Caramelo</td><td>5</td><td>R$ 6,50</td><td>R$ 32,50</td><td>Cartão</td><td>Pendente</td></tr>
+              <tr><td>007</td><td>10/08/2025</td><td>Ana</td><td>Bombom Caramelo</td><td>5</td><td>R$ 6,50</td><td>R$ 32,50</td><td>Cartão</td><td>Pendente</td></tr>
+              <tr><td>008</td><td>10/08/2025</td><td>Ana</td><td>Bombom Caramelo</td><td>5</td><td>R$ 6,50</td><td>R$ 32,50</td><td>Cartão</td><td>Pendente</td></tr>
+              <tr><td>009</td><td>10/08/2025</td><td>Ana</td><td>Bombom Caramelo</td><td>5</td><td>R$ 6,50</td><td>R$ 32,50</td><td>Cartão</td><td>Pendente</td></tr>
+              <tr><td>010</td><td>10/08/2025</td><td>Ana</td><td>Bombom Caramelo</td><td>5</td><td>R$ 6,50</td><td>R$ 32,50</td><td>Cartão</td><td>Pendente</td></tr>
+              <tr><td>011</td><td>10/08/2025</td><td>Ana</td><td>Bombom Caramelo</td><td>5</td><td>R$ 6,50</td><td>R$ 32,50</td><td>Cartão</td><td>Pendente</td></tr>
+              <tr><td>012</td><td>10/08/2024</td><td>Ana</td><td>Bombom Caramelo</td><td>5</td><td>R$ 6,50</td><td>R$ 32,50</td><td>Cartão</td><td>Pendente</td></tr>
+              <tr><td>013</td><td>10/07/2025</td><td>Ana</td><td>Bombom Caramelo</td><td>5</td><td>R$ 6,50</td><td>R$ 32,50</td><td>Cartão</td><td>Pendente</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer"><div class="small">CHOCOLATEMPO</div><div class="small">© 2025</div></footer>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

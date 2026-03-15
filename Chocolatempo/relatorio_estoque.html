@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CHOCOLATEMPO — Relatório de Estoque</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="favicon.svg" />
+</head>
+<body>
+  <div class="container">
+    <header class="header"><div class="brand"><div class="logo">C</div><div><h1>CHOCOLATEMPO</h1><div class="small">Relatório de Estoque</div></div></div>
+    <nav class="nav"><a href="index.html">Home</a><a href="relatorio_vendas.html">Vendas</a><a href="relatorio_compras.html">Compras</a><a href="relatorio_estoque.html">Estoque</a></nav>
+    <div class="menu-right"><button class="btn">Exportar</button></div></header>
+
+    <section style="margin-top:18px">
+      <div class="form-panel report-panel">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <h2>Estoque (simulação)</h2>
+          <div class="filter-row">
+            <input class="js-filter-input" placeholder="Pesquisar produto, SKU..." />
+            <select><option>Todos</option><option>Baixo estoque</option></select>
+            <button class="btn">Filtrar</button>
+          </div>
+        </div>
+        <div class="table-panel" style="margin-top:12px">
+          <table class="table">
+            <thead>
+              <tr><th class="sortable">SKU</th><th class="sortable">Produto</th><th class="sortable">Categoria</th><th class="sortable">Qtd Atual</th><th class="sortable">Mínimo</th><th class="sortable">Local</th><th class="sortable">Status</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>TRF-001</td><td>Trufa Clássica</td><td>Trufas</td><td>25</td><td>10</td><td>Prateleira A</td><td>OK</td></tr>
+              <tr><td>TBL-070</td><td>Tablete 70%</td><td>Tabletes</td><td>8</td><td>15</td><td>Prateleira B</td><td>Baixo</td></tr>
+              <tr><td>BOX-006</td><td>Box 6 Sortidos</td><td>Box</td><td>12</td><td>5</td><td>Prateleira C</td><td>OK</td></tr>
+              <tr><td>BOX-006</td><td>Box 6 Sortidos</td><td>Box</td><td>12</td><td>5</td><td>Prateleira C</td><td>OK</td></tr>
+              <tr><td>BOX-006</td><td>Box 6 Sortidos</td><td>Box</td><td>12</td><td>5</td><td>Prateleira C</td><td>OK</td></tr>
+              <tr><td>BOX-006</td><td>Box 6 Sortidos</td><td>Box</td><td>12</td><td>5</td><td>Prateleira C</td><td>OK</td></tr>
+              <tr><td>BOX-006</td><td>Box 6 Sortidos</td><td>Box</td><td>12</td><td>5</td><td>Prateleira C</td><td>OK</td></tr>
+              <tr><td>BOX-006</td><td>Box 6 Sortidos</td><td>Box</td><td>12</td><td>5</td><td>Prateleira C</td><td>OK</td></tr>
+              <tr><td>BOX-006</td><td>Box 6 Sortidos</td><td>Box</td><td>12</td><td>5</td><td>Prateleira C</td><td>OK</td></tr>
+              <tr><td>BOX-006</td><td>Box 6 Sortidos</td><td>Box</td><td>12</td><td>5</td><td>Prateleira C</td><td>OK</td></tr>
+              <tr><td>BOX-006</td><td>Box 6 Sortidos</td><td>Box</td><td>12</td><td>5</td><td>Prateleira C</td><td>OK</td></tr>
+              <tr><td>BOX-006</td><td>Box 6 Sortidos</td><td>Box</td><td>12</td><td>5</td><td>Prateleira C</td><td>OK</td></tr>
+              <tr><td>BOX-006</td><td>Box 6 Sortidos</td><td>Box</td><td>12</td><td>5</td><td>Prateleira C</td><td>OK</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer"><div class="small">CHOCOLATEMPO</div><div class="small">© 2025</div></footer>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

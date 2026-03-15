@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CHOCOLATEMPO — Relatório de Vendas</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="header-wrapper">
+      <div class="header">
+        <div class="brand">
+          <div class="logo">🍫</div>
+          <div>
+            <h1>CHOCOLATEMPO</h1>
+            <div class="small">Relatório de Vendas</div>
+          </div>
+        </div>
+        <nav class="nav">
+          <a href="index.html"><i class="fas fa-home"></i> Home</a>
+          <a href="cadastro_produto.html"
+            ><i class="fas fa-cookie"></i> Produtos</a
+          >
+          <a href="cadastro_motoboy.html"
+            ><i class="fas fa-motorcycle"></i> Motoboys</a
+          >
+          <a href="cadastro_fornecedor.html"
+            ><i class="fas fa-truck"></i> Fornecedores</a
+          >
+          <a href="relatorios.html"
+            ><i class="fas fa-chart-line"></i> Relatórios</a
+          >
+          <a href="carrinho.html"
+            ><i class="fas fa-shopping-cart"></i> Carrinho</a
+          >
+        </nav>
+      </div>
+    </div>
+
+    <div class="container">
+      <h2>Histórico de Vendas</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Data</th>
+            <th>Cliente</th>
+            <th>Produto</th>
+            <th>Quantidade</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody id="vendasTabela"></tbody>
+      </table>
+    </div>
+
+    <script>
+      function carregarVendas() {
+        const vendas = [
+          { data: "01/09/2025", cliente: "Ana Souza", produto: "Trufa Clássica", quantidade: 3, total: "26,70" },
+          { data: "02/09/2025", cliente: "Carlos Mendes", produto: "Box 6 Sortidos", quantidade: 1, total: "49,90" },
+          { data: "03/09/2025", cliente: "Fernanda Lima", produto: "Tablete Ao Leite", quantidade: 2, total: "15,80" },
+          { data: "04/09/2025", cliente: "João Ribeiro", produto: "Bombom Caramelo", quantidade: 4, total: "26,00" },
+          { data: "05/09/2025", cliente: "Maria Oliveira", produto: "Tablete 70% Cacau", quantidade: 1, total: "12,50" },
+          { data: "06/09/2025", cliente: "Lucas Rocha", produto: "Chocolate Branco", quantidade: 2, total: "19,80" },
+          { data: "07/09/2025", cliente: "Juliana Castro", produto: "Trufa Bela", quantidade: 3, total: "28,50" },
+          { data: "08/09/2025", cliente: "Marcos Silva", produto: "Bombom Amendoim", quantidade: 5, total: "29,50" },
+          { data: "09/09/2025", cliente: "Clara Nunes", produto: "Box 6 Sortidos", quantidade: 2, total: "99,80" },
+          { data: "10/09/2025", cliente: "Thiago Costa", produto: "Trufa Clássica", quantidade: 4, total: "35,60" },
+          { data: "11/09/2025", cliente: "Paula Ferreira", produto: "Bombom Caramelo", quantidade: 3, total: "19,50" },
+          { data: "12/09/2025", cliente: "Rafael Duarte", produto: "Tablete Ao Leite", quantidade: 1, total: "7,90" },
+          { data: "13/09/2025", cliente: "Larissa Almeida", produto: "Chocolate Branco", quantidade: 1, total: "9,90" },
+          { data: "14/09/2025", cliente: "Bruno Tavares", produto: "Trufa Bela", quantidade: 2, total: "19,00" },
+          { data: "15/09/2025", cliente: "Isabela Martins", produto: "Bombom Amendoim", quantidade: 3, total: "17,70" }
+        ];
+    
+        const tbody = document.getElementById("vendasTabela");
+        tbody.innerHTML = "";
+    
+        vendas.forEach((v) => {
+          const tr = document.createElement("tr");
+          tr.innerHTML = `
+            <td>${v.data}</td>
+            <td>${v.cliente}</td>
+            <td>${v.produto}</td>
+            <td>${v.quantidade}</td>
+            <td>R$ ${v.total}</td>
+          `;
+          tbody.appendChild(tr);
+        });
+      }
+    
+      carregarVendas();
+    </script>
+    
+  </body>
+</html>
