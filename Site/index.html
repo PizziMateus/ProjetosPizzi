@@ -1,0 +1,1242 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mateus Dev — Desenvolvimento Web · Chapecó, SC</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg:        #080c14;
+  --bg2:       #0c1220;
+  --bg3:       #101828;
+  --navy:      #0f1e35;
+  --blue:      #1a3a5c;
+  --blue-mid:  #2563a8;
+  --blue-light:#4a90d9;
+  --gold:      #c9a84c;
+  --gold-light:#e8c87a;
+  --gold-dim:  rgba(201,168,76,0.15);
+  --white:     #f4f4f0;
+  --off:       #c8cdd8;
+  --muted:     #6b7490;
+  --border:    rgba(201,168,76,0.12);
+  --border2:   rgba(74,144,217,0.15);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background: var(--bg);
+  color: var(--white);
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* CURSOR */
+.cursor {
+  position: fixed;
+  width: 8px; height: 8px;
+  background: var(--gold);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s, width 0.3s, height 0.3s, background 0.3s;
+}
+.cursor-ring {
+  position: fixed;
+  width: 36px; height: 36px;
+  border: 1px solid rgba(201,168,76,0.4);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: transform 0.15s ease-out, width 0.3s, height 0.3s, border-color 0.3s;
+}
+body:has(a:hover) .cursor, body:has(button:hover) .cursor { width: 14px; height: 14px; }
+body:has(a:hover) .cursor-ring, body:has(button:hover) .cursor-ring {
+  width: 52px; height: 52px; border-color: rgba(201,168,76,0.7);
+}
+
+/* NAV */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 24px 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(to bottom, rgba(8,12,20,0.95), transparent);
+  backdrop-filter: blur(12px);
+}
+
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--white);
+  text-decoration: none;
+}
+.nav-logo span { color: var(--gold); }
+
+.nav-links {
+  display: flex;
+  gap: 40px;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.25s;
+  position: relative;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0;
+  width: 0; height: 1px;
+  background: var(--gold);
+  transition: width 0.3s;
+}
+.nav-links a:hover { color: var(--gold); }
+.nav-links a:hover::after { width: 100%; }
+
+.nav-cta {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-decoration: none;
+  border: 1px solid var(--gold);
+  padding: 10px 24px;
+  transition: background 0.3s, color 0.3s;
+}
+.nav-cta:hover { background: var(--gold); color: var(--bg); }
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 140px 60px 80px;
+  overflow: hidden;
+}
+
+/* BG GRADIENT MESH */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.hero-bg::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  left: -10%;
+  width: 70%;
+  height: 100%;
+  background: radial-gradient(ellipse at center, rgba(26,58,92,0.5) 0%, transparent 65%);
+}
+.hero-bg::after {
+  content: '';
+  position: absolute;
+  bottom: -20%;
+  right: -5%;
+  width: 50%;
+  height: 80%;
+  background: radial-gradient(ellipse at center, rgba(201,168,76,0.07) 0%, transparent 65%);
+}
+
+/* GRID LINES */
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(74,144,217,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(74,144,217,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  z-index: 0;
+}
+
+/* FLOATING ORBS */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  z-index: 0;
+  animation: float 8s ease-in-out infinite;
+}
+.orb-1 {
+  width: 400px; height: 400px;
+  background: rgba(37,99,168,0.2);
+  top: 10%; left: 5%;
+  animation-delay: 0s;
+}
+.orb-2 {
+  width: 300px; height: 300px;
+  background: rgba(201,168,76,0.08);
+  bottom: 15%; right: 10%;
+  animation-delay: 3s;
+}
+.orb-3 {
+  width: 200px; height: 200px;
+  background: rgba(74,144,217,0.12);
+  top: 50%; right: 30%;
+  animation-delay: 5s;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-30px); }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 780px;
+}
+
+.hero-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 32px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.2s;
+}
+.eyebrow-line { width: 40px; height: 1px; background: var(--gold); }
+.eyebrow-text {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.hero h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(52px, 7vw, 96px);
+  font-weight: 300;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  margin-bottom: 28px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.35s;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--gold-light);
+}
+.hero h1 strong {
+  font-weight: 700;
+  color: var(--white);
+  display: block;
+}
+
+.hero-sub {
+  font-size: 16px;
+  font-weight: 300;
+  color: var(--off);
+  line-height: 1.8;
+  max-width: 500px;
+  margin-bottom: 52px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.5s;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.65s;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--gold);
+  color: var(--bg);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 16px 36px;
+  transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gold-light);
+  transform: translateX(-100%);
+  transition: transform 0.35s;
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(201,168,76,0.3); }
+.btn-primary:hover::before { transform: translateX(0); }
+.btn-primary span { position: relative; z-index: 1; }
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--off);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 16px 28px;
+  border: 1px solid rgba(255,255,255,0.12);
+  transition: border-color 0.3s, color 0.3s;
+}
+.btn-ghost:hover { border-color: var(--blue-light); color: var(--blue-light); }
+
+/* HERO DECORATION */
+.hero-deco {
+  position: absolute;
+  right: 60px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  opacity: 0;
+  animation: fadeIn 1.2s ease forwards 0.9s;
+}
+
+.deco-card {
+  width: 280px;
+  background: rgba(15,30,53,0.8);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(20px);
+  padding: 28px;
+  position: relative;
+}
+.deco-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold), transparent);
+}
+
+.deco-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 24px;
+}
+.deco-stat:last-child { margin-bottom: 0; }
+.deco-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 40px;
+  font-weight: 600;
+  color: var(--gold);
+  line-height: 1;
+}
+.deco-label { font-size: 11px; letter-spacing: 0.15em; color: var(--muted); text-transform: uppercase; }
+.deco-divider { height: 1px; background: var(--border); margin: 20px 0; }
+
+/* SECTION BASE */
+section { position: relative; }
+
+.section-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 100px 60px;
+}
+
+.section-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.section-tag span {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.section-tag::before, .section-tag::after {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 1px;
+  background: var(--gold);
+}
+.section-tag::after { width: 60px; }
+
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(36px, 4vw, 58px);
+  font-weight: 300;
+  line-height: 1.15;
+  margin-bottom: 20px;
+}
+.section-title em { font-style: italic; color: var(--gold-light); }
+
+/* ABOUT */
+.about { background: var(--bg2); }
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.about-text p {
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--off);
+  line-height: 1.9;
+  margin-bottom: 20px;
+}
+
+.about-text p strong { color: var(--white); font-weight: 500; }
+
+.about-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 32px;
+}
+.pill {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--blue-light);
+  border: 1px solid var(--border2);
+  padding: 7px 16px;
+  background: rgba(74,144,217,0.05);
+}
+
+.about-visual {
+  position: relative;
+}
+
+.about-box {
+  background: var(--navy);
+  border: 1px solid var(--border);
+  padding: 40px;
+  position: relative;
+}
+.about-box::after {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  right: -12px;
+  inset: 12px -12px -12px 12px;
+  border: 1px solid var(--border2);
+  z-index: -1;
+}
+
+.about-quote {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-style: italic;
+  font-weight: 300;
+  color: var(--off);
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+.about-quote em { color: var(--gold-light); font-style: normal; }
+
+.about-signature {
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+}
+
+/* WHY */
+.why { background: var(--bg); }
+
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  margin-top: 60px;
+  border: 1px solid var(--border);
+}
+
+.why-item {
+  padding: 44px 36px;
+  background: var(--bg);
+  border-right: 1px solid var(--border);
+  position: relative;
+  transition: background 0.3s;
+  overflow: hidden;
+}
+.why-item:last-child { border-right: none; }
+.why-item:hover { background: rgba(15,30,53,0.8); }
+
+.why-item::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold), transparent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s;
+}
+.why-item:hover::before { transform: scaleX(1); }
+
+.why-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 56px;
+  font-weight: 700;
+  color: var(--border2);
+  line-height: 1;
+  margin-bottom: 20px;
+  transition: color 0.3s;
+}
+.why-item:hover .why-num { color: rgba(201,168,76,0.2); }
+
+.why-icon { font-size: 28px; margin-bottom: 16px; display: block; }
+
+.why-item h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 14px;
+  color: var(--white);
+}
+.why-item p {
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.why-bottom {
+  margin-top: 60px;
+  padding: 44px;
+  background: linear-gradient(135deg, var(--navy), var(--bg3));
+  border: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 60px;
+  align-items: center;
+}
+
+.why-bottom-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-weight: 300;
+  line-height: 1.5;
+  color: var(--off);
+}
+.why-bottom-text em { color: var(--gold-light); font-style: italic; }
+
+/* WORK */
+.work { background: var(--bg2); }
+
+.work-intro {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: end;
+  margin-bottom: 60px;
+}
+
+.work-intro p {
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.project-card {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  position: relative;
+  group: true;
+  transition: border-color 0.3s, transform 0.3s;
+}
+.project-card:hover {
+  border-color: var(--gold);
+  transform: translateY(-4px);
+}
+
+.project-thumb {
+  height: 200px;
+  background: var(--navy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.project-thumb-inner {
+  text-align: center;
+}
+.project-thumb-icon { font-size: 40px; opacity: 0.5; }
+
+/* Animated gradient overlay */
+.project-thumb::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.project-card:hover .project-thumb::before { opacity: 1; }
+
+.project-card:nth-child(1) .project-thumb { background: linear-gradient(135deg, #0f1e35, #1a3a5c); }
+.project-card:nth-child(2) .project-thumb { background: linear-gradient(135deg, #1a2035, #2d1a5c); }
+.project-card:nth-child(3) .project-thumb { background: linear-gradient(135deg, #0f2535, #1a4a5c); }
+
+.project-label {
+  position: absolute;
+  top: 16px; left: 16px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: rgba(8,12,20,0.8);
+  padding: 4px 10px;
+  border: 1px solid var(--border);
+}
+
+.project-info {
+  padding: 24px;
+}
+.project-info h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--white);
+}
+.project-info p {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--muted);
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+.project-link {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: gap 0.2s;
+}
+.project-link:hover { gap: 14px; }
+
+.projects-placeholder {
+  grid-column: 1 / -1;
+  border: 1px dashed rgba(201,168,76,0.2);
+  padding: 48px;
+  text-align: center;
+  display: none;
+}
+.projects-placeholder p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-style: italic;
+  color: var(--muted);
+}
+
+/* CONTACT */
+.contact { background: var(--bg); }
+
+.contact-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 100px;
+  align-items: start;
+}
+
+.contact-text p {
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--off);
+  line-height: 1.9;
+  margin-bottom: 40px;
+}
+
+.contact-infos { display: flex; flex-direction: column; gap: 16px; }
+.contact-info-item {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  padding: 16px 20px;
+  border: 1px solid var(--border);
+  background: rgba(15,30,53,0.4);
+  transition: border-color 0.3s;
+}
+.contact-info-item:hover { border-color: var(--gold); }
+.contact-info-icon { font-size: 18px; }
+.contact-info-detail {}
+.contact-info-label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
+.contact-info-value { font-size: 14px; color: var(--off); }
+
+.contact-form { display: flex; flex-direction: column; gap: 16px; }
+
+.form-group { display: flex; flex-direction: column; gap: 8px; }
+.form-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.form-input, .form-textarea {
+  background: rgba(15,30,53,0.5);
+  border: 1px solid rgba(74,144,217,0.15);
+  color: var(--white);
+  font-family: 'Outfit', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  padding: 14px 18px;
+  outline: none;
+  transition: border-color 0.3s, background 0.3s;
+  resize: none;
+}
+.form-input:focus, .form-textarea:focus {
+  border-color: var(--gold);
+  background: rgba(15,30,53,0.8);
+}
+.form-input::placeholder, .form-textarea::placeholder { color: var(--muted); }
+
+.form-textarea { height: 120px; }
+
+.btn-submit {
+  background: transparent;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  font-family: 'Outfit', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 16px 40px;
+  cursor: none;
+  transition: background 0.3s, color 0.3s, transform 0.2s;
+  align-self: flex-start;
+}
+.btn-submit:hover {
+  background: var(--gold);
+  color: var(--bg);
+  transform: translateY(-2px);
+}
+
+/* FOOTER */
+footer {
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+  padding: 40px 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.footer-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--white);
+  letter-spacing: 0.06em;
+}
+.footer-logo span { color: var(--gold); }
+
+.footer-copy {
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+}
+
+.footer-links {
+  display: flex;
+  gap: 28px;
+  list-style: none;
+}
+.footer-links a {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.25s;
+}
+.footer-links a:hover { color: var(--gold); }
+
+/* SCROLL REVEAL */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ANIMATIONS */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* DIVIDER */
+.gold-divider {
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--gold), transparent);
+  margin: 28px 0;
+}
+
+/* MOBILE */
+@media (max-width: 900px) {
+  nav { padding: 20px 24px; }
+  .nav-links { display: none; }
+  .hero { padding: 120px 24px 60px; }
+  .hero-deco { display: none; }
+  .section-inner { padding: 72px 24px; }
+  .about-grid { grid-template-columns: 1fr; gap: 40px; }
+  .why-grid { grid-template-columns: 1fr; }
+  .why-item { border-right: none; border-bottom: 1px solid var(--border); }
+  .why-item:last-child { border-bottom: none; }
+  .why-bottom { grid-template-columns: 1fr; gap: 32px; }
+  .work-intro { grid-template-columns: 1fr; gap: 20px; }
+  .projects-grid { grid-template-columns: 1fr; }
+  .contact-inner { grid-template-columns: 1fr; gap: 48px; }
+  footer { padding: 32px 24px; flex-direction: column; align-items: flex-start; }
+  .footer-links { flex-wrap: wrap; gap: 16px; }
+  .hero-actions { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#inicio" class="nav-logo">Mateus<span>.</span>Dev</a>
+  <ul class="nav-links">
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#diferencial">Por que um site?</a></li>
+    <li><a href="#trabalhos">Trabalhos</a></li>
+    <li><a href="#contato">Contato</a></li>
+  </ul>
+  <a href="https://wa.me/5549988489573?text=Olá!%20Gostaria%20de%20solicitar%20uma%20cotação%20para%20um%20site." target="_blank" class="nav-cta">Solicitar cotação</a>
+</nav>
+
+<!-- HERO -->
+<section id="inicio" class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <div class="eyebrow-line"></div>
+      <div class="eyebrow-text">Desenvolvimento Web</div>
+    </div>
+
+    <h1>
+      <em>Sites que vendem.</em>
+      <strong>Resultados<br>que ficam.</strong>
+    </h1>
+
+    <p class="hero-sub">
+      Transformo o seu negócio em uma presença digital profissional,
+      que conquista clientes, gera confiança e trabalha por você 24 horas por dia.
+    </p>
+
+    <div class="hero-actions">
+      <a href="https://wa.me/5549988489573?text=Olá!%20Quero%20um%20site%20profissional%20para%20o%20meu%20negócio." target="_blank" class="btn-primary">
+        <span>Quero um site assim</span>
+        <span>→</span>
+      </a>
+      <a href="#trabalhos" class="btn-ghost">
+        <span>Ver trabalhos</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-deco">
+    <div class="deco-card">
+      <div class="deco-stat">
+        <div class="deco-num">+80%</div>
+        <div class="deco-label">mais credibilidade percebida</div>
+      </div>
+      <div class="deco-divider"></div>
+      <div class="deco-stat">
+        <div class="deco-num">24h</div>
+        <div class="deco-label">seu site trabalha por você</div>
+      </div>
+      <div class="deco-divider"></div>
+      <div class="deco-stat">
+        <div class="deco-num">100%</div>
+        <div class="deco-label">feito para você</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="sobre" class="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <div class="section-tag"><span>Sobre mim</span></div>
+        <h2 class="section-title">Desenvolvedor<br>com <em>olhar de negócio.</em></h2>
+        <div class="gold-divider"></div>
+        <p>
+          Meu nome é <strong>Mateus Pizzi</strong>, e desenvolvo sites profissionais para
+          negócios locais e digitais. Não sou só um programador,
+          entendo que um site precisa <strong>converter visitantes em clientes.</strong>
+        </p>
+        <p>
+          Trabalho com negócios que querem crescer: desde o comércio do bairro até
+          profissionais liberais que precisam de credibilidade online. Cada projeto
+          é desenvolvido com atenção aos <strong>detalhes que fazem a diferença.</strong>
+        </p>
+        <div class="about-pills">
+          <span class="pill">HTML & CSS</span>
+          <span class="pill">JavaScript</span>
+          <span class="pill">Design Responsivo</span>
+          <span class="pill">SEO Básico</span>
+          <span class="pill">WhatsApp Integration</span>
+        </div>
+      </div>
+
+      <div class="about-visual reveal" style="transition-delay: 0.15s;">
+        <div style="position:relative; display:inline-block; width:100%;">
+          <!-- Decorative offset border -->
+          <div style="position:absolute; inset:16px -16px -16px 16px; border:1px solid rgba(74,144,217,0.2); z-index:0;"></div>
+          <!-- Gold top bar -->
+          <div style="position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,var(--gold),transparent); z-index:2;"></div>
+          <!-- Photo -->
+          <img src="fotoeu.jpeg" id="mateusPhoto"
+               style="width:100%; display:block; position:relative; z-index:1; object-fit:cover; aspect-ratio:3/4; filter:brightness(0.95) contrast(1.05);">
+          <!-- Name tag -->
+          <div style="position:absolute; bottom:0; left:0; right:0; z-index:2; background:linear-gradient(to top, rgba(8,12,20,0.92), transparent); padding:40px 28px 24px;">
+            <div style="font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:600; color:var(--white);">Mateus Pizzi</div>
+            <div style="font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin-top:4px;">Desenvolvedor Web - 4 anos</div>
+          </div>
+        </div>
+        <!-- Quote below photo -->
+        <div style="margin-top:32px; padding:24px 28px; background:var(--navy); border:1px solid var(--border); border-left:3px solid var(--gold);">
+          <div style="font-family:'Cormorant Garamond',serif; font-size:17px; font-style:italic; color:var(--off); line-height:1.6;">
+            "Um site profissional não é um custo, é o <span style="color:var(--gold-light)">vendedor que nunca dorme</span> do seu negócio."
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section id="diferencial" class="why">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-tag"><span>Por que investir</span></div>
+      <h2 class="section-title">O que um site faz<br>pelo seu <em>negócio?</em></h2>
+    </div>
+
+    <div class="why-grid reveal" style="transition-delay: 0.1s;">
+      <div class="why-item">
+        <div class="why-num">01</div>
+        <span class="why-icon">🏆</span>
+        <h3>Credibilidade instantânea</h3>
+        <p>Hoje, o cliente pesquisa antes de comprar. Quem não aparece online, não existe. Um site profissional passa confiança antes mesmo de você atender o telefone.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-num">02</div>
+        <span class="why-icon">🌐</span>
+        <h3>Disponível 24 horas</h3>
+        <p>Enquanto você dorme, seu site está apresentando seus produtos, capturando contatos e respondendo dúvidas. É uma vitrine que nunca fecha.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-num">03</div>
+        <span class="why-icon">📈</span>
+        <h3>Você aparece no Google</h3>
+        <p>Com um site bem construído, seu negócio aparece quando alguém busca pelo seu serviço na internet. Clientes novos, sem depender de indicação.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-num">04</div>
+        <span class="why-icon">📱</span>
+        <h3>Funciona em qualquer tela</h3>
+        <p>Todos os sites que desenvolvo são responsivos: ficam perfeitos no celular, tablet e computador. Hoje, mais de 70% dos acessos vêm do celular.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-num">05</div>
+        <span class="why-icon">💬</span>
+        <h3>Mais contatos qualificados</h3>
+        <p>Um site bem estruturado guia o visitante até entrar em contato. Com botão de WhatsApp direto, o cliente chega até você com um clique.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-num">06</div>
+        <span class="why-icon">🎯</span>
+        <h3>Diferencial competitivo</h3>
+        <p>No comércio local de Chapecó, muitos negócios ainda não têm site. Ter um profissional já te coloca à frente dos concorrentes imediatamente.</p>
+      </div>
+    </div>
+
+    <div class="why-bottom reveal" style="transition-delay: 0.2s;">
+      <div class="why-bottom-text">
+        Seu concorrente já está online.<br>
+        <em>E o seu negócio, onde está?</em>
+      </div>
+      <a href="https://wa.me/5549988489573?text=Olá!%20Quero%20criar%20meu%20site%20agora." target="_blank" class="btn-primary">
+        <span>Quero meu site agora</span>
+        <span>→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section id="trabalhos" class="work">
+  <div class="section-inner">
+    <div class="work-intro">
+      <div class="reveal">
+        <div class="section-tag"><span>Portfólio</span></div>
+        <h2 class="section-title">Projetos que<br><em>entregam resultado.</em></h2>
+      </div>
+      <div class="reveal" style="transition-delay: 0.1s;">
+        <p>Cada site é desenvolvido do zero, pensado pra realidade do negócio do cliente. Nada de template genérico, cada projeto tem sua identidade!</p>
+      </div>
+    </div>
+
+    <div class="projects-grid reveal" style="transition-delay: 0.15s;">
+
+      <!-- PROJETO 1 -->
+      <div class="project-card">
+        <div class="project-thumb">
+          <div class="project-label">Academia</div>
+          <div class="project-thumb-inner">
+            <div class="project-thumb-icon">🏋️</div>
+          </div>
+        </div>
+        <div class="project-info">
+          <h3>FitChapecó Academia</h3>
+          <p>Landing page completa com planos, galeria e botão de matrícula direto no WhatsApp.</p>
+          <a href="#" class="project-link">Ver projeto <span>→</span></a>
+        </div>
+      </div>
+
+      <!-- PROJETO 2 -->
+      <div class="project-card">
+        <div class="project-thumb">
+          <div class="project-label">Barbearia</div>
+          <div class="project-thumb-inner">
+            <div class="project-thumb-icon">✂️</div>
+          </div>
+        </div>
+        <div class="project-info">
+          <h3>Barbearia do João</h3>
+          <p>Site institucional com galeria de cortes, serviços, agendamento e localização.</p>
+          <a href="#" class="project-link">Ver projeto <span>→</span></a>
+        </div>
+      </div>
+
+      <!-- PROJETO 3 -->
+      <div class="project-card">
+        <div class="project-thumb">
+          <div class="project-label">Tradicionalismo</div>
+          <div class="project-thumb-inner">
+            <div class="project-thumb-icon">🤠</div>
+          </div>
+        </div>
+        <div class="project-info">
+          <h3>CTG Galpão do Pago</h3>
+          <p>Site para CTG com agenda de eventos, galeria e informações institucionais.</p>
+          <a href="#" class="project-link">Ver projeto <span>→</span></a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contato" class="contact">
+  <div class="section-inner">
+    <div class="contact-inner">
+      <div class="reveal">
+        <div class="section-tag"><span>Contato</span></div>
+        <h2 class="section-title">Vamos conversar<br>sobre o seu <em>projeto?</em></h2>
+        <div class="gold-divider"></div>
+        <p>
+          Não trabalho com preço fixo — cada projeto é único e o valor depende do que você precisa.
+          Me conta a sua ideia e te envio uma proposta sem compromisso.
+        </p>
+        <div class="contact-infos">
+          <div class="contact-info-item">
+            <div class="contact-info-icon">📍</div>
+            <div class="contact-info-detail">
+              <div class="contact-info-label">Localização</div>
+              <div class="contact-info-value">Chapecó, SC</div>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-icon">⏱️</div>
+            <div class="contact-info-detail">
+              <div class="contact-info-label">Resposta</div>
+              <div class="contact-info-value">Em até 24 horas</div>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-icon">💬</div>
+            <div class="contact-info-detail">
+              <div class="contact-info-label">duvidas</div>
+              <div class="contact-info-value">Entre em Contato</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal" style="transition-delay: 0.15s;">
+        <div class="contact-form">
+          <div class="form-group">
+            <label class="form-label">Seu nome</label>
+            <input type="text" class="form-input" placeholder="Como posso te chamar?">
+          </div>
+          <div class="form-group">
+            <label class="form-label">WhatsApp ou e-mail</label>
+            <input type="text" class="form-input" placeholder="Para eu retornar o contato">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Seu negócio</label>
+            <input type="text" class="form-input" placeholder="Academia, barbearia, loja...">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Conta mais</label>
+            <textarea class="form-textarea" placeholder="O que você precisa? Já tem site, quer criar do zero..."></textarea>
+          </div>
+          <button type="button" class="btn-submit" onclick="handleSubmit()">Enviar pelo WhatsApp →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Mateus<span>.</span>Dev</div>
+  <ul class="footer-links">
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#diferencial">Por que um site?</a></li>
+    <li><a href="#trabalhos">Trabalhos</a></li>
+    <li><a href="#contato">Contato</a></li>
+  </ul>
+  <div class="footer-copy">© 2026 · Chapecó, SC</div>
+</footer>
+
+<script>
+  // CURSOR
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.left = mx + 'px';
+    cursor.style.top = my + 'px';
+  });
+
+  function animateRing() {
+    rx += (mx - rx) * 0.12;
+    ry += (my - ry) * 0.12;
+    ring.style.left = rx + 'px';
+    ring.style.top = ry + 'px';
+    requestAnimationFrame(animateRing);
+  }
+  animateRing();
+
+  // SCROLL REVEAL
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+
+  // FORM
+  function handleSubmit() {
+    const nome    = document.querySelectorAll('.form-input')[0].value.trim();
+    const contato = document.querySelectorAll('.form-input')[1].value.trim();
+    const negocio = document.querySelectorAll('.form-input')[2].value.trim();
+    const msg     = document.querySelector('.form-textarea').value.trim();
+
+    if (!nome || !contato) {
+      alert('Por favor, preencha pelo menos seu nome e contato.');
+      return;
+    }
+
+    const texto = `Olá! Vim pelo seu site e tenho interesse em um projeto.\n\n👤 *Nome:* ${nome}\n📞 *Contato:* ${contato}${negocio ? `\n🏪 *Negócio:* ${negocio}` : ''}${msg ? `\n💬 *Mensagem:* ${msg}` : ''}`;
+
+    const url = `https://wa.me/5549988489573?text=${encodeURIComponent(texto)}`;
+    window.open(url, '_blank');
+
+    const btn = document.querySelector('.btn-submit');
+    btn.textContent = 'WhatsApp aberto ✓';
+    btn.style.background = 'var(--gold)';
+    btn.style.color = 'var(--bg)';
+    setTimeout(() => {
+      btn.textContent = 'Enviar pelo WhatsApp →';
+      btn.style.background = '';
+      btn.style.color = '';
+    }, 3000);
+  }
+
+  // SMOOTH NAV
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+</script>
+</body>
+</html>
