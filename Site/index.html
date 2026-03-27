@@ -703,7 +703,11 @@ section { position: relative; }
 .contact-info-label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
 .contact-info-value { font-size: 14px; color: var(--off); }
 
-.contact-form { display: flex; flex-direction: column; gap: 16px; }
+.contact-form { 
+  padding: 86px 0 0 30px;
+  display: flex; 
+  flex-direction: 
+  column; gap: 16px; }
 
 .form-group { display: flex; flex-direction: column; gap: 8px; }
 .form-label {
@@ -733,6 +737,9 @@ section { position: relative; }
 
 .form-textarea { height: 120px; }
 
+.tex-con {
+  padding: 0 0 27px 0;
+}
 .btn-submit {
   background: transparent;
   border: 1px solid var(--gold);
@@ -1102,8 +1109,8 @@ footer {
         <div class="section-tag"><span>Contato</span></div>
         <h2 class="section-title">Vamos conversar<br>sobre o seu <em>projeto?</em></h2>
         <div class="gold-divider"></div>
-        <p>
-          Não trabalho com preço fixo — cada projeto é único e o valor depende do que você precisa.
+        <p class="tex-con">
+          Não trabalho com preço fixo, cada projeto é único e o valor depende do que você precisa.
           Me conta a sua ideia e te envio uma proposta sem compromisso.
         </p>
         <div class="contact-infos">
