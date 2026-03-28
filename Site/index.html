@@ -585,12 +585,16 @@ section { position: relative; }
 
 .project-thumb {
   height: 200px;
-  background: var(--navy);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
+  background-size: cover;
+  background-position: center top; /* 🔥 importante */
+  background-repeat: no-repeat;
+  
+}
+.project-thumb::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(8,12,20,0.35);
 }
 
 .project-thumb-inner {
@@ -685,6 +689,12 @@ section { position: relative; }
   color: var(--off);
   line-height: 1.9;
   margin-bottom: 40px;
+}
+
+.project-link-wrapper {
+  text-decoration: none;
+  color: inherit;
+  display: block;
 }
 
 .contact-infos { display: flex; flex-direction: column; gap: 16px; }
@@ -1053,50 +1063,44 @@ footer {
     <div class="projects-grid reveal" style="transition-delay: 0.15s;">
 
       <!-- PROJETO 1 -->
+      <a href="academia.html" class="project-link-wrapper">
       <div class="project-card">
-        <div class="project-thumb">
+        <div class="project-thumb" style="background-image: url('img/academia-preview.png');">
           <div class="project-label">Academia</div>
-          <div class="project-thumb-inner">
-            <div class="project-thumb-icon">🏋️</div>
-          </div>
         </div>
         <div class="project-info">
           <h3>FitChapecó Academia</h3>
           <p>Landing page completa com planos, galeria e botão de matrícula direto no WhatsApp.</p>
-          <a href="#" class="project-link">Ver projeto <span>→</span></a>
         </div>
       </div>
+      </a>
 
       <!-- PROJETO 2 -->
+       <a href="barbearia.html" class="project-link-wrapper">
       <div class="project-card">
-        <div class="project-thumb">
-          <div class="project-label">Barbearia</div>
-          <div class="project-thumb-inner">
-            <div class="project-thumb-icon">✂️</div>
-          </div>
-        </div>
+        <div class="project-thumb" style="background-image: url('img/barbearia-preview.png');">
+  <div class="project-label">Barbearia</div>
+</div>
         <div class="project-info">
           <h3>Barbearia do João</h3>
           <p>Site institucional com galeria de cortes, serviços, agendamento e localização.</p>
-          <a href="#" class="project-link">Ver projeto <span>→</span></a>
         </div>
       </div>
+      </a>
 
       <!-- PROJETO 3 -->
-      <div class="project-card">
-        <div class="project-thumb">
-          <div class="project-label">Tradicionalismo</div>
-          <div class="project-thumb-inner">
-            <div class="project-thumb-icon">🤠</div>
-          </div>
-        </div>
+
+      <a href="gaiteiro.html" class="project-link-wrapper">
+  <div class="project-card">
+        <div class="project-thumb" style="background-image: url('img/gaiteiro-preview.png');">
+  <div class="project-label">Gaiteiro</div>
+</div>
         <div class="project-info">
-          <h3>CTG Galpão do Pago</h3>
-          <p>Site para CTG com agenda de eventos, galeria e informações institucionais.</p>
-          <a href="#" class="project-link">Ver projeto <span>→</span></a>
+          <h3>Site Pessoal - Gaiteiro</h3>
+          <p>Site pessoal com agenda de apresentações, galeria e contato direto.</p>
         </div>
       </div>
-
+    </a>
     </div>
   </div>
 </section>
