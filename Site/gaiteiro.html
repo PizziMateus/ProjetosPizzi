@@ -40,9 +40,7 @@
       --green2: #3d6428;
     }
 
-    html {
-      scroll-behavior: smooth
-    }
+    html { scroll-behavior: smooth }
 
     body {
       font-family: 'Outfit', sans-serif;
@@ -51,7 +49,6 @@
       overflow-x: hidden
     }
 
-    /* WOOD TEXTURE OVERLAY */
     .wood-texture {
       position: absolute;
       inset: 0;
@@ -67,9 +64,7 @@
     /* NAV */
     nav {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
+      top: 0; left: 0; right: 0;
       z-index: 100;
       padding: 18px 64px;
       display: flex;
@@ -80,1390 +75,354 @@
       border-bottom: 1px solid var(--border);
     }
 
-    .nav-logo {
-      display: flex;
-      flex-direction: column;
-      gap: 0px;
-      text-decoration: none;
-    }
+    .nav-logo { display: flex; flex-direction: column; gap: 0; text-decoration: none; }
+    .nav-logo-name { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; letter-spacing: 0.06em; color: var(--cream); line-height: 1.1; }
+    .nav-logo-sub { font-size: 10px; font-weight: 400; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); }
 
-    .nav-logo-name {
-      font-family: 'Playfair Display', serif;
-      font-size: 18px;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      color: var(--cream);
-      line-height: 1.1;
-    }
+    .nav-links { display: flex; gap: 32px; list-style: none }
+    .nav-links a { font-size: 12px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--off); text-decoration: none; transition: color 0.25s; }
+    .nav-links a:hover { color: var(--gold) }
 
-    .nav-logo-sub {
-      font-size: 10px;
-      font-weight: 400;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--gold);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 32px;
-      list-style: none
-    }
-
-    .nav-links a {
-      font-size: 12px;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--off);
-      text-decoration: none;
-      transition: color 0.25s;
-    }
-
-    .nav-links a:hover {
-      color: var(--gold)
-    }
-
-    .nav-cta {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--bg);
-      background: var(--gold);
-      padding: 11px 26px;
-      text-decoration: none;
-      transition: background 0.3s, transform 0.2s;
-      border: none;
-      cursor: pointer;
-    }
-
-    .nav-cta:hover {
-      background: var(--gold2);
-      transform: translateY(-1px)
-    }
+    .nav-cta { font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--bg); background: var(--gold); padding: 11px 26px; text-decoration: none; transition: background 0.3s, transform 0.2s; border: none; cursor: pointer; }
+    .nav-cta:hover { background: var(--gold2); transform: translateY(-1px) }
 
     /* HERO */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: flex-end;
-      position: relative;
-      overflow: hidden;
-      padding: 0 64px 80px;
-    }
+    .hero { min-height: 100vh; display: flex; align-items: flex-end; position: relative; overflow: hidden; padding: 0 64px 80px; }
+    .hero-bg { position: absolute; inset: 0; z-index: 0; background: linear-gradient(160deg, #0d0a07 30%, #1a1008 60%, #0d0a07 100%); }
+    .hero-bg::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 60% 40%, rgba(74, 46, 20, 0.6) 0%, transparent 65%); }
+    .hero-bg::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 40%; background: linear-gradient(to top, var(--bg), transparent); }
 
-    /* BG gradient */
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-      background: linear-gradient(160deg, #0d0a07 30%, #1a1008 60%, #0d0a07 100%);
-    }
+    .hero-dust { position: absolute; inset: 0; z-index: 0; overflow: hidden }
+    .dust-dot { position: absolute; border-radius: 50%; background: rgba(200, 146, 42, 0.4); animation: twinkle 3s ease-in-out infinite; }
+    @keyframes twinkle { 0%,100% { opacity: 0.2; transform: scale(1) } 50% { opacity: 0.8; transform: scale(1.5) } }
 
-    .hero-bg::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse at 60% 40%, rgba(74, 46, 20, 0.6) 0%, transparent 65%);
-    }
+    .hero-bg-name { position: absolute; bottom: -20px; right: -20px; z-index: 0; font-family: 'Playfair Display', serif; font-size: clamp(120px, 18vw, 260px); font-weight: 700; font-style: italic; color: rgba(200, 146, 42, 0.04); line-height: 1; letter-spacing: -0.02em; white-space: nowrap; pointer-events: none; user-select: none; }
 
-    .hero-bg::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 40%;
-      background: linear-gradient(to top, var(--bg), transparent);
-    }
+    .hero-content { position: relative; z-index: 1; max-width: 780px; padding-top: 120px; }
 
-    /* Stars/dust particles */
-    .hero-dust {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-      overflow: hidden
-    }
+    .hero-eyebrow { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; opacity: 0; animation: fadeUp 0.8s ease forwards 0.2s; }
+    .eyebrow-ornament { display: flex; align-items: center; gap: 8px; }
+    .orn-line { width: 32px; height: 1px; background: var(--gold) }
+    .orn-diamond { width: 6px; height: 6px; background: var(--gold); transform: rotate(45deg); flex-shrink: 0; }
+    .eyebrow-text { font-size: 11px; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold) }
 
-    .dust-dot {
-      position: absolute;
-      border-radius: 50%;
-      background: rgba(200, 146, 42, 0.4);
-      animation: twinkle 3s ease-in-out infinite;
-    }
+    .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(56px, 8vw, 110px); font-weight: 700; line-height: 0.95; letter-spacing: -0.01em; margin-bottom: 8px; opacity: 0; animation: fadeUp 0.8s ease forwards 0.35s; }
+    .hero h1 .firstname { display: block; color: var(--cream) }
+    .hero h1 .lastname { display: block; font-style: italic; color: transparent; -webkit-text-stroke: 1px rgba(200, 146, 42, 0.5); font-size: 0.9em; }
+    .hero h1 .fullname-last { display: block; font-style: italic; color: var(--gold2); font-size: 0.75em; font-weight: 400; }
 
-    @keyframes twinkle {
+    .hero-title-bar { display: flex; align-items: center; gap: 16px; margin: 20px 0 28px; opacity: 0; animation: fadeUp 0.8s ease forwards 0.45s; }
+    .title-bar-line { flex: 1; height: 1px; background: linear-gradient(90deg, var(--border), transparent) }
+    .title-bar-text { font-family: 'Crimson Text', serif; font-size: 18px; font-style: italic; color: var(--gold); white-space: nowrap; }
+    .title-bar-line-left { width: 48px; height: 1px; background: var(--border); flex-shrink: 0 }
 
-      0%,
-      100% {
-        opacity: 0.2;
-        transform: scale(1)
-      }
+    .hero-quote { font-family: 'Crimson Text', serif; font-size: clamp(18px, 2.2vw, 24px); font-style: italic; font-weight: 400; color: var(--cream2); line-height: 1.6; max-width: 560px; margin-bottom: 48px; opacity: 0; animation: fadeUp 0.8s ease forwards 0.55s; }
+    .hero-quote em { color: var(--gold2); font-style: normal }
 
-      50% {
-        opacity: 0.8;
-        transform: scale(1.5)
-      }
-    }
+    .hero-actions { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; opacity: 0; animation: fadeUp 0.8s ease forwards 0.7s; }
 
-    /* Big name background */
-    .hero-bg-name {
-      position: absolute;
-      bottom: -20px;
-      right: -20px;
-      z-index: 0;
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(120px, 18vw, 260px);
-      font-weight: 700;
-      font-style: italic;
-      color: rgba(200, 146, 42, 0.04);
-      line-height: 1;
-      letter-spacing: -0.02em;
-      white-space: nowrap;
-      pointer-events: none;
-      user-select: none;
-    }
+    .btn-gold { display: inline-flex; align-items: center; gap: 10px; background: var(--gold); color: var(--bg); font-size: 12px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; text-decoration: none; padding: 17px 38px; transition: background 0.3s, transform 0.2s, box-shadow 0.3s; }
+    .btn-gold:hover { background: var(--gold2); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(200, 146, 42, 0.3) }
 
-    .hero-content {
-      position: relative;
-      z-index: 1;
-      max-width: 780px;
-      padding-top: 120px;
-    }
+    .btn-ghost { display: inline-flex; align-items: center; gap: 10px; color: var(--cream); font-size: 12px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; padding: 17px 30px; border: 1px solid var(--border2); transition: border-color 0.3s, color 0.3s; }
+    .btn-ghost:hover { border-color: var(--gold); color: var(--gold) }
 
-    .hero-eyebrow {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 24px;
-      opacity: 0;
-      animation: fadeUp 0.8s ease forwards 0.2s;
-    }
-
-    .eyebrow-ornament {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .orn-line {
-      width: 32px;
-      height: 1px;
-      background: var(--gold)
-    }
-
-    .orn-diamond {
-      width: 6px;
-      height: 6px;
-      background: var(--gold);
-      transform: rotate(45deg);
-      flex-shrink: 0;
-    }
-
-    .eyebrow-text {
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      color: var(--gold)
-    }
-
-    .hero h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(56px, 8vw, 110px);
-      font-weight: 700;
-      line-height: 0.95;
-      letter-spacing: -0.01em;
-      margin-bottom: 8px;
-      opacity: 0;
-      animation: fadeUp 0.8s ease forwards 0.35s;
-    }
-
-    .hero h1 .firstname {
-      display: block;
-      color: var(--cream)
-    }
-
-    .hero h1 .lastname {
-      display: block;
-      font-style: italic;
-      color: transparent;
-      -webkit-text-stroke: 1px rgba(200, 146, 42, 0.5);
-      font-size: 0.9em;
-    }
-
-    .hero h1 .fullname-last {
-      display: block;
-      font-style: italic;
-      color: var(--gold2);
-      font-size: 0.75em;
-      font-weight: 400;
-    }
-
-    .hero-title-bar {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      margin: 20px 0 28px;
-      opacity: 0;
-      animation: fadeUp 0.8s ease forwards 0.45s;
-    }
-
-    .title-bar-line {
-      flex: 1;
-      height: 1px;
-      background: linear-gradient(90deg, var(--border), transparent)
-    }
-
-    .title-bar-text {
-      font-family: 'Crimson Text', serif;
-      font-size: 18px;
-      font-style: italic;
-      color: var(--gold);
-      white-space: nowrap;
-    }
-
-    .title-bar-line-left {
-      width: 48px;
-      height: 1px;
-      background: var(--border);
-      flex-shrink: 0
-    }
-
-    .hero-quote {
-      font-family: 'Crimson Text', serif;
-      font-size: clamp(18px, 2.2vw, 24px);
-      font-style: italic;
-      font-weight: 400;
-      color: var(--cream2);
-      line-height: 1.6;
-      max-width: 560px;
-      margin-bottom: 48px;
-      opacity: 0;
-      animation: fadeUp 0.8s ease forwards 0.55s;
-    }
-
-    .hero-quote em {
-      color: var(--gold2);
-      font-style: normal
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 16px;
-      align-items: center;
-      flex-wrap: wrap;
-      opacity: 0;
-      animation: fadeUp 0.8s ease forwards 0.7s;
-    }
-
-    .btn-gold {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: var(--gold);
-      color: var(--bg);
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      text-decoration: none;
-      padding: 17px 38px;
-      transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
-    }
-
-    .btn-gold:hover {
-      background: var(--gold2);
-      transform: translateY(-2px);
-      box-shadow: 0 12px 40px rgba(200, 146, 42, 0.3)
-    }
-
-    .btn-ghost {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      color: var(--cream);
-      font-size: 12px;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      text-decoration: none;
-      padding: 17px 30px;
-      border: 1px solid var(--border2);
-      transition: border-color 0.3s, color 0.3s;
-    }
-
-    .btn-ghost:hover {
-      border-color: var(--gold);
-      color: var(--gold)
-    }
-
-    /* Hero side badge */
-    .hero-badge {
-      position: absolute;
-      right: 64px;
-      top: 50%;
-      transform: translateY(-50%);
-      z-index: 1;
-      opacity: 0;
-      animation: fadeIn 1s ease forwards 0.9s;
-    }
-
-    .badge-box {
-      border: 1px solid var(--border);
-      padding: 28px 24px;
-      background: rgba(26, 20, 13, 0.8);
-      backdrop-filter: blur(12px);
-      text-align: center;
-      position: relative;
-    }
-
-    .badge-box::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--gold), transparent)
-    }
-
-    .badge-item {
-      margin-bottom: 20px
-    }
-
-    .badge-item:last-child {
-      margin-bottom: 0
-    }
-
-    .badge-num {
-      font-family: 'Playfair Display', serif;
-      font-size: 44px;
-      font-weight: 700;
-      color: var(--gold);
-      line-height: 1
-    }
-
-    .badge-label {
-      font-size: 10px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-top: 2px;
-      padding: 5px 0 0 0;
-    }
-
-    .badge-divider {
-      height: 1px;
-      background: var(--border);
-      margin: 16px 0
-    }
+    .hero-badge { position: absolute; right: 64px; top: 50%; transform: translateY(-50%); z-index: 1; opacity: 0; animation: fadeIn 1s ease forwards 0.9s; }
+    .badge-box { border: 1px solid var(--border); padding: 28px 24px; background: rgba(26, 20, 13, 0.8); backdrop-filter: blur(12px); text-align: center; position: relative; }
+    .badge-box::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--gold), transparent) }
+    .badge-item { margin-bottom: 20px }
+    .badge-item:last-child { margin-bottom: 0 }
+    .badge-num { font-family: 'Playfair Display', serif; font-size: 44px; font-weight: 700; color: var(--gold); line-height: 1 }
+    .badge-label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-top: 2px; padding: 5px 0 0 0; }
+    .badge-divider { height: 1px; background: var(--border); margin: 16px 0 }
 
     /* SECTION BASE */
-    .section-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 100px 64px
-    }
-
-    .section-tag {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 14px;
-    }
-
-    .section-tag::before,
-    .section-tag::after {
-      content: '';
-      display: block;
-      height: 1px;
-      background: var(--gold)
-    }
-
-    .section-tag::before {
-      width: 20px
-    }
-
-    .section-tag::after {
-      width: 40px
-    }
-
-    .section-tag span {
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--gold)
-    }
-
-    .section-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(38px, 4.5vw, 62px);
-      font-weight: 700;
-      line-height: 1.1;
-      margin-bottom: 12px;
-    }
-
-    .section-title em {
-      font-style: italic;
-      color: var(--gold2)
-    }
-
-    .gold-rule {
-      width: 52px;
-      height: 2px;
-      background: linear-gradient(90deg, var(--gold), transparent);
-      margin: 18px 0
-    }
+    .section-inner { max-width: 1100px; margin: 0 auto; padding: 100px 64px }
+    .section-tag { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+    .section-tag::before, .section-tag::after { content: ''; display: block; height: 1px; background: var(--gold) }
+    .section-tag::before { width: 20px }
+    .section-tag::after { width: 40px }
+    .section-tag span { font-size: 10px; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold) }
+    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(38px, 4.5vw, 62px); font-weight: 700; line-height: 1.1; margin-bottom: 12px; }
+    .section-title em { font-style: italic; color: var(--gold2) }
+    .gold-rule { width: 52px; height: 2px; background: linear-gradient(90deg, var(--gold), transparent); margin: 18px 0 }
 
     /* BIO */
-    .bio {
-      background: var(--bg2);
-      position: relative;
-      overflow: hidden
-    }
+    .bio { background: var(--bg2); position: relative; overflow: hidden }
+    .bio-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center }
+    .bio-text p { font-family: 'Crimson Text', serif; font-size: 18px; font-weight: 400; color: var(--cream2); line-height: 1.85; margin-bottom: 16px; }
+    .bio-text p strong { color: var(--cream); font-weight: 600 }
+    .bio-text p em { color: var(--gold2); font-style: italic }
+    .bio-achievements { display: flex; flex-direction: column; gap: 10px; margin-top: 28px }
+    .achievement { display: flex; align-items: center; gap: 14px; padding: 14px 18px; background: var(--bg3); border: 1px solid var(--border2); border-left: 3px solid var(--gold); transition: background 0.3s; }
+    .achievement:hover { background: var(--leather) }
+    .ach-icon { font-size: 20px; flex-shrink: 0 }
+    .ach-text { font-size: 14px; font-weight: 500; color: var(--cream) }
+    .ach-sub { font-size: 11px; color: var(--muted); margin-top: 2px }
 
-    .bio-grid {
+    .bio-visual { position: relative }
+    .bio-photo { background: linear-gradient(155deg, var(--leather), var(--bg3)); border: 1px solid var(--border); height: 500px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+    .bio-photo::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--gold), transparent) }
+    .bio-photo::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 40%; background: linear-gradient(to top, var(--bg2), transparent) }
+    .bio-photo-inner { text-align: center; opacity: 0.25; position: relative; z-index: 1 }
+    .bio-photo-icon { font-size: 80px; display: block; margin-bottom: 12px }
+    .bio-photo-label { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--off) }
+    .bio-photo-tag { position: absolute; bottom: 24px; left: 0; right: 0; z-index: 2; text-align: center; }
+    .bio-photo-tag-inner { display: inline-block; background: rgba(13, 10, 7, 0.85); border: 1px solid var(--border); padding: 12px 28px; backdrop-filter: blur(8px); }
+    .bio-photo-tag-name { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: var(--cream); }
+    .bio-photo-tag-sub { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-top: 2px }
+
+    /* DIVISOR */
+    .gaita-divider { background: var(--bg); padding: 48px 0; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+    .gaita-divider-inner { display: flex; align-items: center; gap: 24px; position: relative; z-index: 1; }
+    .gaita-divider-line { width: 120px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold)) }
+    .gaita-divider-line.r { background: linear-gradient(90deg, var(--gold), transparent) }
+    .gaita-divider-text { font-family: 'Crimson Text', serif; font-size: 15px; font-style: italic; color: var(--gold); letter-spacing: 0.1em; text-align: center; }
+    .gaita-divider-icon { font-size: 28px; opacity: 0.6 }
+
+    /* GALLERY — CARROSSEL */
+    .gallery { background: var(--bg2); position: relative; overflow: hidden }
+
+    .carousel-outer { position: relative; user-select: none; margin-top: 40px; }
+
+    .carousel-stage {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center
-    }
-
-    .bio-text p {
-      font-family: 'Crimson Text', serif;
-      font-size: 18px;
-      font-weight: 400;
-      color: var(--cream2);
-      line-height: 1.85;
-      margin-bottom: 16px;
-    }
-
-    .bio-text p strong {
-      color: var(--cream);
-      font-weight: 600
-    }
-
-    .bio-text p em {
-      color: var(--gold2);
-      font-style: italic
-    }
-
-    .bio-achievements {
-      display: flex;
-      flex-direction: column;
+      grid-template-rows: 1fr 1fr;
       gap: 10px;
-      margin-top: 28px
+      height: 460px;
+      transition: opacity 0.35s ease;
     }
+    .carousel-stage.fading { opacity: 0; }
 
-    .achievement {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      padding: 14px 18px;
+    .slide-main {
+      grid-column: 1;
+      grid-row: 1 / 3;
+      position: relative;
+      overflow: hidden;
       background: var(--bg3);
       border: 1px solid var(--border2);
-      border-left: 3px solid var(--gold);
-      transition: background 0.3s;
+      cursor: pointer;
+      transition: border-color 0.3s;
     }
-
-    .achievement:hover {
-      background: var(--leather)
-    }
-
-    .ach-icon {
-      font-size: 20px;
-      flex-shrink: 0
-    }
-
-    .ach-text {
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--cream)
-    }
-
-    .ach-sub {
-      font-size: 11px;
-      color: var(--muted);
-      margin-top: 2px
-    }
-
-    .bio-visual {
-      position: relative
-    }
-
-    .bio-photo {
-      background: linear-gradient(155deg, var(--leather), var(--bg3));
-      border: 1px solid var(--border);
-      height: 500px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .bio-photo::before {
+    .slide-main::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--gold), transparent)
+      top: 0; left: 0; right: 0;
+      height: 2px; z-index: 2;
+      background: linear-gradient(90deg, var(--gold), transparent);
     }
 
-    .bio-photo::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 40%;
-      background: linear-gradient(to top, var(--bg2), transparent)
-    }
-
-    .bio-photo-inner {
-      text-align: center;
-      opacity: 0.25;
-      position: relative;
-      z-index: 1
-    }
-
-    .bio-photo-icon {
-      font-size: 80px;
-      display: block;
-      margin-bottom: 12px
-    }
-
-    .bio-photo-label {
-      font-size: 11px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--off)
-    }
-
-    .bio-photo-tag {
-      position: absolute;
-      bottom: 24px;
-      left: 0;
-      right: 0;
-      z-index: 2;
-      text-align: center;
-    }
-
-    .bio-photo-tag-inner {
-      display: inline-block;
-      background: rgba(13, 10, 7, 0.85);
-      border: 1px solid var(--border);
-      padding: 12px 28px;
-      backdrop-filter: blur(8px);
-    }
-
-    .bio-photo-tag-name {
-      font-family: 'Playfair Display', serif;
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--cream);
-    }
-
-    .bio-photo-tag-sub {
-      font-size: 10px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-top: 2px
-    }
-
-    /* GAITA SECTION — decorative */
-    .gaita-divider {
-      background: var(--bg);
-      padding: 48px 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .slide-secondary {
+      grid-column: 2;
       position: relative;
       overflow: hidden;
-    }
-
-    .gaita-divider-inner {
-      display: flex;
-      align-items: center;
-      gap: 24px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .gaita-divider-line {
-      width: 120px;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--gold))
-    }
-
-    .gaita-divider-line.r {
-      background: linear-gradient(90deg, var(--gold), transparent)
-    }
-
-    .gaita-divider-text {
-      font-family: 'Crimson Text', serif;
-      font-size: 15px;
-      font-style: italic;
-      color: var(--gold);
-      letter-spacing: 0.1em;
-      text-align: center;
-    }
-
-    .gaita-divider-icon {
-      font-size: 28px;
-      opacity: 0.6
-    }
-
-    /* GALLERY */
-    .gallery {
-      background: var(--bg2);
-      position: relative;
-      overflow: hidden
-    }
-
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      grid-template-rows: auto auto;
-      gap: 10px;
-      margin-top: 48px;
-    }
-
-    .gal-item {
       background: var(--bg3);
       border: 1px solid var(--border2);
-      position: relative;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 160px;
       cursor: pointer;
       transition: border-color 0.3s;
     }
 
-    .gal-item:hover {
-      border-color: var(--gold)
-    }
+    .slide-main:hover, .slide-secondary:hover { border-color: var(--gold); }
 
-    .gal-item:nth-child(1) {
-      grid-column: 1/3;
-      grid-row: 1/3;
-      min-height: 320px
+    .slide-img {
+      width: 100%; height: 100%;
+      background-size: cover;
+      background-position: center;
+      display: flex; align-items: center; justify-content: center;
+      transition: transform 0.45s ease;
+      position: relative;
     }
+    .slide-main:hover .slide-img,
+    .slide-secondary:hover .slide-img { transform: scale(1.04); }
 
-    .gal-item:nth-child(5) {
-      grid-column: 3/5
+    .slide-placeholder {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 10px; opacity: 0.18; pointer-events: none;
+      position: absolute; inset: 0;
     }
+    .slide-placeholder .ph-icon { font-size: 48px; }
+    .slide-secondary .slide-placeholder .ph-icon { font-size: 32px; }
+    .slide-placeholder .ph-lbl { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--off); }
 
-    .gal-inner {
-      text-align: center;
-      opacity: 0.2
-    }
-
-    .gal-icon {
-      font-size: 36px;
-      display: block;
-      margin-bottom: 6px
-    }
-
-    .gal-label {
-      font-size: 10px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--off)
-    }
-
-    .gal-hover {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(74, 46, 20, 0.9), transparent);
+    .slide-hover {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(10,6,2,0.9) 0%, rgba(10,6,2,0.15) 55%, transparent 100%);
       opacity: 0;
-      transition: opacity 0.3s;
-      display: flex;
-      align-items: flex-end;
-      padding: 18px;
+      transition: opacity 0.3s ease;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 20px 22px;
+      pointer-events: none;
+      z-index: 3;
     }
+    .slide-main:hover .slide-hover,
+    .slide-secondary:hover .slide-hover { opacity: 1; }
 
-    .gal-item:hover .gal-hover {
-      opacity: 1
+    .hover-tag {
+      font-size: 9px; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 5px;
     }
+    .hover-title {
+      font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 600;
+      color: var(--cream); margin-bottom: 4px; line-height: 1.2;
+    }
+    .slide-secondary .hover-title { font-size: 14px; }
+    .hover-desc {
+      font-family: 'Crimson Text', serif; font-size: 14px; font-style: italic;
+      color: var(--cream2); line-height: 1.45;
+    }
+    .slide-secondary .hover-desc { font-size: 12px; }
 
-    .gal-hover-text {
-      font-family: 'Crimson Text', serif;
-      font-size: 15px;
-      font-style: italic;
-      color: var(--gold3)
+    /* controles */
+    .carousel-controls {
+      display: flex; align-items: center; gap: 12px; margin-top: 16px;
     }
+    .carousel-dots { display: flex; gap: 8px; align-items: center; }
+    .carousel-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--muted); border: none; padding: 0; cursor: pointer;
+      transition: background 0.3s, transform 0.3s;
+    }
+    .carousel-dot.active { background: var(--gold); transform: scale(1.45); }
+    .carousel-progress { flex: 1; height: 1px; background: var(--border2); position: relative; overflow: hidden; }
+    .carousel-progress-fill {
+      position: absolute; left: 0; top: 0; bottom: 0;
+      background: var(--gold); width: 0%;
+    }
+    .carousel-counter { font-size: 11px; letter-spacing: 0.15em; color: var(--muted); white-space: nowrap; }
+    .carousel-counter em { color: var(--gold); font-style: normal; font-weight: 600; }
+    .carousel-arrows { display: flex; gap: 6px; }
+    .carousel-arrow {
+      width: 40px; height: 40px;
+      background: var(--bg3); border: 1px solid var(--border);
+      color: var(--gold); font-size: 16px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.25s, border-color 0.25s, transform 0.2s;
+    }
+    .carousel-arrow:hover { background: rgba(200,146,42,0.1); border-color: var(--gold); transform: translateY(-1px); }
 
     /* VIDEOS */
-    .videos {
-      background: var(--bg)
-    }
+    .videos { background: var(--bg) }
+    .videos-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 48px }
+    .video-card { background: var(--bg3); border: 1px solid var(--border2); overflow: hidden; transition: border-color 0.3s, transform 0.3s; }
+    .video-card:hover { border-color: var(--gold); transform: translateY(-4px) }
+    .video-thumb { height: 180px; background: linear-gradient(135deg, var(--leather), var(--bg3)); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; cursor: pointer; }
+    .video-thumb::before { content: ''; position: absolute; inset: 0; background: rgba(0, 0, 0, 0.3) }
+    .play-btn { width: 56px; height: 56px; border-radius: 50%; background: rgba(200, 146, 42, 0.9); display: flex; align-items: center; justify-content: center; position: relative; z-index: 1; font-size: 20px; padding-left: 4px; transition: transform 0.3s, background 0.3s; box-shadow: 0 0 0 8px rgba(200, 146, 42, 0.15); }
+    .video-card:hover .play-btn { transform: scale(1.1); background: var(--gold) }
+    .video-info { padding: 20px }
+    .video-tag { font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px }
+    .video-title { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 600; margin-bottom: 6px; color: var(--cream) }
+    .video-desc { font-size: 13px; font-weight: 300; color: var(--off); line-height: 1.6 }
 
-    .videos-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      margin-top: 48px
-    }
+    /* VIDEO MODAL */
+    .video-modal { display: none; position: fixed; inset: 0; z-index: 999; background: rgba(0, 0, 0, 0.92); align-items: center; justify-content: center; padding: 20px; }
+    .video-modal.active { display: flex; }
+    .video-modal-inner { position: relative; width: 100%; max-width: 900px; }
+    .video-modal-close { position: absolute; top: -48px; right: 0; font-size: 14px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); cursor: pointer; background: none; border: none; font-family: 'Outfit', sans-serif; transition: color 0.2s; }
+    .video-modal-close:hover { color: var(--cream); }
+    .video-modal video { width: 100%; border: 1px solid var(--border); display: block; background: #000; max-height: 80vh; }
 
-    .video-card {
-      background: var(--bg3);
-      border: 1px solid var(--border2);
-      overflow: hidden;
-      transition: border-color 0.3s, transform 0.3s;
-    }
-
-    .video-card:hover {
-      border-color: var(--gold);
-      transform: translateY(-4px)
-    }
-
-    .video-thumb {
-      height: 180px;
-      background: linear-gradient(135deg, var(--leather), var(--bg3));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-      cursor: pointer;
-    }
-
-    .video-thumb::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.3)
-    }
-
-    .play-btn {
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
-      background: rgba(200, 146, 42, 0.9);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      z-index: 1;
-      font-size: 20px;
-      padding-left: 4px;
-      transition: transform 0.3s, background 0.3s;
-      box-shadow: 0 0 0 8px rgba(200, 146, 42, 0.15);
-    }
-
-    .video-card:hover .play-btn {
-      transform: scale(1.1);
-      background: var(--gold)
-    }
-
-    .video-info {
-      padding: 20px
-    }
-
-    .video-tag {
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 8px
-    }
-
-    .video-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 16px;
-      font-weight: 600;
-      margin-bottom: 6px;
-      color: var(--cream)
-    }
-
-    .video-desc {
-      font-size: 13px;
-      font-weight: 300;
-      color: var(--off);
-      line-height: 1.6
-    }
-
-    .video-placeholder {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      padding: 32px;
-      text-align: center;
-      border: 1px dashed rgba(200, 146, 42, 0.2);
-      cursor: pointer;
-    }
-
-    .video-placeholder p {
-      font-family: 'Crimson Text', serif;
-      font-style: italic;
-      font-size: 16px;
-      color: var(--muted)
-    }
-
-    /* SHOWS */
-    .shows {
-      background: var(--bg2)
-    }
-
-    .shows-list {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-      margin-top: 48px
-    }
-
-    .show-item {
-      background: var(--bg3);
-      border: 1px solid var(--border2);
-      display: grid;
-      grid-template-columns: 100px 1fr auto auto;
-      gap: 24px;
-      align-items: center;
-      padding: 24px 28px;
-      transition: border-color 0.3s, background 0.3s;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .show-item::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      width: 0;
-      background: var(--gold);
-      transition: width 0.3s;
-    }
-
-    .show-item:hover {
-      border-color: var(--gold);
-      background: rgba(74, 46, 20, 0.3)
-    }
-
-    .show-item:hover::before {
-      width: 3px
-    }
-
-    .show-date {
-      text-align: center
-    }
-
-    .show-day {
-      font-family: 'Playfair Display', serif;
-      font-size: 40px;
-      font-weight: 700;
-      color: var(--gold);
-      line-height: 1
-    }
-
-    .show-month {
-      font-size: 11px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--muted)
-    }
-
-    .show-info {}
-
-    .show-name {
-      font-family: 'Playfair Display', serif;
-      font-size: 18px;
-      font-weight: 600;
-      margin-bottom: 4px
-    }
-
-    .show-local {
-      font-size: 13px;
-      color: var(--off);
-      display: flex;
-      align-items: center;
-      gap: 6px
-    }
-
-    .show-type {
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      padding: 5px 14px;
-      border: 1px solid var(--border);
-      color: var(--gold);
-      white-space: nowrap;
-    }
-
-    .show-btn {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--bg);
-      background: var(--gold);
-      padding: 10px 22px;
-      text-decoration: none;
-      white-space: nowrap;
-      transition: background 0.3s;
-    }
-
-    .show-btn:hover {
-      background: var(--gold2)
-    }
-
-    .show-item.past {
-      opacity: 0.45
-    }
-
-    .show-past-badge {
-      position: absolute;
-      top: 12px;
-      right: 12px;
-      font-size: 9px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--muted);
-      border: 1px solid var(--muted);
-      padding: 2px 8px;
-    }
+    /* AGENDA */
+    .shows { background: var(--bg2) }
+    .shows-list { display: flex; flex-direction: column; gap: 2px; margin-top: 48px }
+    .show-item { background: var(--bg3); border: 1px solid var(--border2); display: grid; grid-template-columns: 100px 1fr auto auto; gap: 24px; align-items: center; padding: 24px 28px; transition: border-color 0.3s, background 0.3s; position: relative; overflow: hidden; }
+    .show-item::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 0; background: var(--gold); transition: width 0.3s; }
+    .show-item:hover { border-color: var(--gold); background: rgba(74, 46, 20, 0.3) }
+    .show-item:hover::before { width: 3px }
+    .show-date { text-align: center }
+    .show-day { font-family: 'Playfair Display', serif; font-size: 40px; font-weight: 700; color: var(--gold); line-height: 1 }
+    .show-month { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted) }
+    .show-name { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 600; margin-bottom: 4px }
+    .show-local { font-size: 13px; color: var(--off); display: flex; align-items: center; gap: 6px }
+    .show-type { font-size: 10px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; padding: 5px 14px; border: 1px solid var(--border); color: var(--gold); white-space: nowrap; }
+    .show-btn { font-size: 11px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--bg); background: var(--gold); padding: 10px 22px; text-decoration: none; white-space: nowrap; transition: background 0.3s; }
+    .show-btn:hover { background: var(--gold2) }
 
     /* CONTATO */
-    .contato {
-      background: var(--bg);
-      position: relative;
-      overflow: hidden
-    }
+    .contato { background: var(--bg); position: relative; overflow: hidden }
+    .contato-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start }
+    .contato-text p { font-family: 'Crimson Text', serif; font-size: 18px; color: var(--cream2); line-height: 1.85; margin-bottom: 32px; }
+    .contato-infos { display: flex; flex-direction: column; gap: 12px }
+    .contato-item { display: flex; gap: 16px; align-items: center; padding: 16px 20px; background: var(--bg3); border: 1px solid var(--border2); border-left: 3px solid var(--gold); transition: background 0.3s; }
+    .contato-item:hover { background: var(--leather) }
+    .ci-icon { font-size: 20px }
+    .ci-label { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 2px }
+    .ci-value { font-size: 14px; font-weight: 500; color: var(--cream) }
 
-    .contato-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: start
-    }
-
-    .contato-text p {
-      font-family: 'Crimson Text', serif;
-      font-size: 18px;
-      color: var(--cream2);
-      line-height: 1.85;
-      margin-bottom: 32px;
-    }
-
-    .contato-infos {
-      display: flex;
-      flex-direction: column;
-      gap: 12px
-    }
-
-    .contato-item {
-      display: flex;
-      gap: 16px;
-      align-items: center;
-      padding: 16px 20px;
-      background: var(--bg3);
-      border: 1px solid var(--border2);
-      border-left: 3px solid var(--gold);
-      transition: background 0.3s;
-    }
-
-    .contato-item:hover {
-      background: var(--leather)
-    }
-
-    .ci-icon {
-      font-size: 20px
-    }
-
-    .ci-label {
-      font-size: 10px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 2px
-    }
-
-    .ci-value {
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--cream)
-    }
-
-    .contato-form {
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      padding: 40px;
-      position: relative;
-    }
-
-    .contato-form::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--gold), transparent)
-    }
-
-    .form-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 24px;
-      font-weight: 600;
-      margin-bottom: 24px
-    }
-
-    .form-title em {
-      font-style: italic;
-      color: var(--gold2)
-    }
-
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 7px;
-      margin-bottom: 16px
-    }
-
-    .form-label {
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--muted)
-    }
-
-    .form-input,
-    .form-textarea,
-    .form-select {
-      background: var(--bg3);
-      border: 1px solid var(--border2);
-      color: var(--cream);
-      font-family: 'Outfit', sans-serif;
-      font-size: 14px;
-      font-weight: 300;
-      padding: 13px 16px;
-      outline: none;
-      transition: border-color 0.3s;
-      resize: none;
-      -webkit-appearance: none;
-    }
-
-    .form-input:focus,
-    .form-textarea:focus,
-    .form-select:focus {
-      border-color: var(--gold)
-    }
-
-    .form-input::placeholder,
-    .form-textarea::placeholder {
-      color: var(--muted)
-    }
-
-    .form-select option {
-      background: var(--bg3);
-      color: var(--cream)
-    }
-
-    .form-textarea {
-      height: 110px
-    }
-
-    .btn-submit {
-      width: 100%;
-      background: var(--gold);
-      color: var(--bg);
-      font-family: 'Outfit', sans-serif;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      padding: 16px;
-      border: none;
-      cursor: pointer;
-      transition: background 0.3s, transform 0.2s;
-    }
-
-    .btn-submit:hover {
-      background: var(--gold2);
-      transform: translateY(-1px)
-    }
+    /* CONTATO DIREITO — WhatsApp direto */
+    .contato-wpp { background: var(--bg2); border: 1px solid var(--border); padding: 40px; position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 20px; }
+    .contato-wpp::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--gold), transparent) }
+    .contato-wpp-icon { font-size: 52px; line-height: 1; }
+    .contato-wpp-title { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 600; }
+    .contato-wpp-title em { font-style: italic; color: var(--gold2) }
+    .contato-wpp-text { font-family: 'Crimson Text', serif; font-size: 17px; font-style: italic; color: var(--cream2); line-height: 1.7; max-width: 340px; }
+    .contato-wpp-num { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--gold); letter-spacing: 0.05em; }
+    .btn-wpp { display: inline-flex; align-items: center; gap: 12px; background: #25d366; color: #fff; font-size: 13px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; text-decoration: none; padding: 18px 40px; transition: background 0.3s, transform 0.2s, box-shadow 0.3s; width: 100%; justify-content: center; }
+    .btn-wpp:hover { background: #1ebd5a; transform: translateY(-2px); box-shadow: 0 12px 40px rgba(37, 211, 102, 0.25); }
+    .contato-wpp-note { font-size: 12px; color: var(--muted); letter-spacing: 0.05em; }
 
     /* CTA FINAL */
-    .cta-final {
-      position: relative;
-      overflow: hidden;
-      padding: 110px 64px;
-      text-align: center;
-      background: linear-gradient(160deg, #1a1008 0%, #0d0a07 50%, #1a0f05 100%);
-    }
-
-    .cta-bg-text {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(80px, 15vw, 200px);
-      font-weight: 700;
-      font-style: italic;
-      color: rgba(200, 146, 42, 0.04);
-      white-space: nowrap;
-      pointer-events: none;
-      user-select: none;
-    }
-
-    .cta-ornament {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 20px;
-      margin-bottom: 28px
-    }
-
-    .cta-orn-line {
-      width: 80px;
-      height: 1px;
-      background: rgba(200, 146, 42, 0.4)
-    }
-
-    .cta-orn-diamond {
-      width: 8px;
-      height: 8px;
-      background: var(--gold);
-      transform: rotate(45deg)
-    }
-
-    .cta-final h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(38px, 5vw, 68px);
-      font-weight: 700;
-      line-height: 1.15;
-      margin-bottom: 16px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .cta-final h2 em {
-      font-style: italic;
-      color: var(--gold2)
-    }
-
-    .cta-final p {
-      font-family: 'Crimson Text', serif;
-      font-size: 20px;
-      font-style: italic;
-      color: var(--off);
-      margin-bottom: 40px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .cta-actions {
-      display: flex;
-      justify-content: center;
-      gap: 16px;
-      flex-wrap: wrap;
-      position: relative;
-      z-index: 1
-    }
+    .cta-final { position: relative; overflow: hidden; padding: 110px 64px; text-align: center; background: linear-gradient(160deg, #1a1008 0%, #0d0a07 50%, #1a0f05 100%); }
+    .cta-bg-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-family: 'Playfair Display', serif; font-size: clamp(80px, 15vw, 200px); font-weight: 700; font-style: italic; color: rgba(200, 146, 42, 0.04); white-space: nowrap; pointer-events: none; user-select: none; }
+    .cta-ornament { display: flex; align-items: center; justify-content: center; gap: 20px; margin-bottom: 28px }
+    .cta-orn-line { width: 80px; height: 1px; background: rgba(200, 146, 42, 0.4) }
+    .cta-orn-diamond { width: 8px; height: 8px; background: var(--gold); transform: rotate(45deg) }
+    .cta-final h2 { font-family: 'Playfair Display', serif; font-size: clamp(38px, 5vw, 68px); font-weight: 700; line-height: 1.15; margin-bottom: 16px; position: relative; z-index: 1; }
+    .cta-final h2 em { font-style: italic; color: var(--gold2) }
+    .cta-final p { font-family: 'Crimson Text', serif; font-size: 20px; font-style: italic; color: var(--off); margin-bottom: 40px; position: relative; z-index: 1; }
+    .cta-actions { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; position: relative; z-index: 1 }
 
     /* FOOTER */
-    footer {
-      background: #080603;
-      border-top: 1px solid var(--border);
-      padding: 40px 64px;
-    }
-
-    .footer-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 24px;
-      margin-bottom: 28px;
-      padding-bottom: 28px;
-      border-bottom: 1px solid var(--border2);
-    }
-
-    .footer-logo-name {
-      font-family: 'Playfair Display', serif;
-      font-size: 20px;
-      font-weight: 700;
-      letter-spacing: 0.04em
-    }
-
-    .footer-logo-sub {
-      font-size: 10px;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-top: 2px
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 24px;
-      list-style: none
-    }
-
-    .footer-links a {
-      font-size: 11px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--muted);
-      text-decoration: none;
-      transition: color 0.2s
-    }
-
-    .footer-links a:hover {
-      color: var(--gold)
-    }
-
-    .footer-bottom {
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 12px
-    }
-
-    .footer-copy {
-      font-size: 12px;
-      color: var(--muted)
-    }
-
-    .footer-made {
-      font-size: 12px;
-      color: var(--muted)
-    }
-
-    .footer-made a {
-      color: var(--gold);
-      text-decoration: none
-    }
+    footer { background: #080603; border-top: 1px solid var(--border); padding: 40px 64px; }
+    .footer-top { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px; margin-bottom: 28px; padding-bottom: 28px; border-bottom: 1px solid var(--border2); }
+    .footer-logo-name { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; letter-spacing: 0.04em }
+    .footer-logo-sub { font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-top: 2px }
+    .footer-links { display: flex; gap: 24px; list-style: none }
+    .footer-links a { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s }
+    .footer-links a:hover { color: var(--gold) }
+    .footer-bottom { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px }
+    .footer-copy { font-size: 12px; color: var(--muted) }
+    .footer-made { font-size: 12px; color: var(--muted) }
+    .footer-made a { color: var(--gold); text-decoration: none }
 
     /* REVEAL */
-    .reveal {
-      opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.7s ease, transform 0.7s ease
-    }
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease }
+    .reveal.visible { opacity: 1; transform: translateY(0) }
 
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0)
-    }
-
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(28px)
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0)
-      }
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0
-      }
-
-      to {
-        opacity: 1
-      }
-    }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(28px) } to { opacity: 1; transform: translateY(0) } }
+    @keyframes fadeIn { from { opacity: 0 } to { opacity: 1 } }
 
     /* MOBILE */
     @media(max-width:900px) {
-      nav {
-        padding: 14px 20px
-      }
-
-      .nav-links {
-        display: none
-      }
-
-      .hero {
-        padding: 110px 20px 60px;
-        align-items: center
-      }
-
-      .hero-badge {
-        display: none
-      }
-
-      .hero-bg-name {
-        font-size: 80px;
-        bottom: 0;
-        right: 0
-      }
-
-      .section-inner {
-        padding: 64px 20px
-      }
-
-      .bio-grid,
-      .contato-grid {
-        grid-template-columns: 1fr;
-        gap: 40px
-      }
-
-      .videos-grid {
-        grid-template-columns: 1fr
-      }
-
-      .gallery-grid {
-        grid-template-columns: 1fr 1fr
-      }
-
-      .gal-item:nth-child(1) {
-        grid-column: auto;
-        grid-row: auto
-      }
-
-      .gal-item:nth-child(5) {
-        grid-column: auto
-      }
-
-      .show-item {
-        grid-template-columns: 80px 1fr;
-        gap: 16px
-      }
-
-      .show-type,
-      .show-btn {
-        display: none
-      }
-
-      footer {
-        padding: 28px 20px
-      }
-
-      .footer-top {
-        flex-direction: column;
-        align-items: flex-start
-      }
-
-      .cta-final {
-        padding: 64px 20px
-      }
+      nav { padding: 14px 20px }
+      .nav-links { display: none }
+      .hero { padding: 110px 20px 60px; align-items: center }
+      .hero-badge { display: none }
+      .hero-bg-name { font-size: 80px; bottom: 0; right: 0 }
+      .section-inner { padding: 64px 20px }
+      .bio-grid, .contato-grid { grid-template-columns: 1fr; gap: 40px }
+      .videos-grid { grid-template-columns: 1fr }
+      .carousel-stage { height: 300px; }
+      .slide-main::before { display: none; }
+      .show-item { grid-template-columns: 80px 1fr; gap: 16px }
+      .show-type, .show-btn { display: none }
+      footer { padding: 28px 20px }
+      .footer-top { flex-direction: column; align-items: flex-start }
+      .cta-final { padding: 64px 20px }
     }
   </style>
 </head>
 
 <body>
+
+  <!-- VIDEO MODAL -->
+  <div class="video-modal" id="videoModal" onclick="closeVideoModal(event)">
+    <div class="video-modal-inner">
+      <button class="video-modal-close" onclick="fecharModal()">✕ Fechar</button>
+      <video id="modalVideo" controls preload="none"></video>
+    </div>
+  </div>
 
   <!-- NAV -->
   <nav>
@@ -1475,11 +434,11 @@
       <li><a href="#bio">Biografia</a></li>
       <li><a href="#galeria">Galeria</a></li>
       <li><a href="#videos">Vídeos</a></li>
-      <li><a href="#shows">Shows</a></li>
+      <li><a href="#agenda">Agenda</a></li>
       <li><a href="#contato">Contato</a></li>
     </ul>
-    <a href="https://wa.me/5549988489573?text=Olá%20Cleyson!%20Tenho%20interesse%20em%20contratar%20você%20para%20um%20show."
-      target="_blank" class="nav-cta">entrar em contato</a>
+    <a href="https://wa.me/5549988489573?text=Olá%20Cleyson!%20Vi%20seu%20trabalho%20e%20quero%20saber%20mais%20sobre%20o%20amadrinhamento."
+      target="_blank" class="nav-cta">falar no whatsapp</a>
   </nav>
 
   <!-- HERO -->
@@ -1502,7 +461,6 @@
         </div>
       </div>
 
-
       <h1>
         <span class="firstname">Cleyson</span>
         <span class="lastname">Vitor</span>
@@ -1511,7 +469,7 @@
 
       <div class="hero-title-bar">
         <div class="title-bar-line-left"></div>
-        <div class="title-bar-text">♪ &nbsp; A alma gaúcha que pulsa no acordes &nbsp; ♪</div>
+        <div class="title-bar-text">♪ &nbsp; A alma gaúcha que pulsa nos acordes &nbsp; ♪</div>
         <div class="title-bar-line"></div>
       </div>
 
@@ -1522,8 +480,8 @@
       </p>
 
       <div class="hero-actions">
-        <a href="https://wa.me/5549988489573?text=Olá%20Cleyson!%20Tenho%20interesse%20em%20contratar%20você%20para%20um%20show."
-          target="_blank" class="btn-gold">🎵 Contratar para amadrinhamento</a>
+        <a href="https://wa.me/5549988489573?text=Olá%20Cleyson!%20Quero%20saber%20mais%20sobre%20o%20amadrinhamento%20na%20chula."
+          target="_blank" class="btn-gold">🎵 Falar sobre amadrinhamento</a>
         <a href="#bio" class="btn-ghost">Conheça o artista</a>
       </div>
     </div>
@@ -1543,8 +501,8 @@
         <div class="badge-divider"></div>
         <div class="badge-item">
           <div class="badge-num">♪</div>
-          <div class="badge-label">Chula & </div>
-          <div class="badge-label">musica nativista</div>
+          <div class="badge-label">Chula &</div>
+          <div class="badge-label">música nativista</div>
         </div>
       </div>
     </div>
@@ -1560,15 +518,15 @@
           <h2 class="section-title">A história de<br>um <em>gaiteiro.</em></h2>
           <div class="gold-rule"></div>
           <div class="bio-text">
-            <p>Nascido e criado em <strong>Chapecó, SC</strong>, Cleyson Vitor Furlanetto cresceu ouvindo o som da gaita
-              ecoar pelos galpões do oeste catarinense. Desde cedo, a <em>tradição gaúcha</em> correu em seu sangue,
-              herdada de família e cultivada com dedicação e amor à cultura gaúcha.</p>
-            <p>Cleyson especializou-se na arte da <em>música da chula</em>,
-              ritmo sagrado do tradicionalismo riograndense e em diversas músicas nativitass que fazem o galpão tremer. Sua gaita conta
-              histórias, desperta saudades e celebra as raízes do povo gaúcho.</p>
-            <p>Trabalhando fielmente a apresentações em <strong>rodeios, shows, e eventos culturais</strong>, com seu principal foco em amadrinhar os chuleadores por todo lugar
-               ( ele representa: <em>Rio Grande do Sul, Santa Catarina, Paraná, Mato Grosso e Mato Grosso do Sul</em> ). Cleyson carrega no peito a missão de manter viva a chama da <em>tradição</em> para as próximas
-              gerações.</p>
+            <p>Criado no oeste do sul do Brasil, Cleyson Vitor Furlanetto cresceu ouvindo o som da gaita ecoar pelos
+              galpões da região. Desde cedo, a <em>tradição gaúcha</em> correu em seu sangue, herdada de família e
+              cultivada com dedicação e amor à cultura gaúcha.</p>
+            <p>Cleyson especializou-se na arte da <em>música da chula</em>, ritmo sagrado do tradicionalismo
+              riograndense, e em diversas músicas nativistas que fazem o galpão tremer. Sua gaita conta histórias,
+              desperta saudades e celebra as raízes do povo gaúcho.</p>
+            <p>Com foco total no <strong>amadrinhamento de chuleadores</strong>, ele representa chulistas por todo o sul
+              do Brasil — <em>Rio Grande do Sul, Santa Catarina, Paraná, Mato Grosso e Mato Grosso do Sul</em>.
+              Cleyson carrega no peito a missão de manter viva a chama da <em>tradição</em> para as próximas gerações.</p>
           </div>
           <div class="bio-achievements">
             <div class="achievement">
@@ -1589,13 +547,13 @@
               <div class="ach-icon">🤠</div>
               <div>
                 <div class="ach-text">Representa mais de 50 CTGs</div>
-                <div class="ach-sub">Quando pega a gaita, pode ter certez que o trabalho vai ser bem feito</div>
+                <div class="ach-sub">Quando pega a gaita, pode ter certeza que o trabalho vai ser bem feito</div>
               </div>
             </div>
             <div class="achievement">
               <div class="ach-icon">🎪</div>
               <div>
-                <div class="ach-text">Presente na maioria dos eventos</div>
+                <div class="ach-text">Presente na maioria dos eventos de chula</div>
                 <div class="ach-sub">Entre em contato e certifique que ele estará presente</div>
               </div>
             </div>
@@ -1624,14 +582,13 @@
     <div class="gaita-divider-inner">
       <div class="gaita-divider-line"></div>
       <div class="gaita-divider-icon">🪗</div>
-      <div class="gaita-divider-text">"Gaúcho não nasce — é temperado pelo vento minuano e batizado no som da gaita"
-      </div>
+      <div class="gaita-divider-text">"Gaúcho não nasce — é temperado pelo vento minuano e batizado no som da gaita"</div>
       <div class="gaita-divider-icon">🤠</div>
       <div class="gaita-divider-line r"></div>
     </div>
   </div>
 
-  <!-- GALLERY -->
+  <!-- GALLERY — CARROSSEL -->
   <section id="galeria" class="gallery">
     <div class="wood-texture"></div>
     <div class="section-inner">
@@ -1639,44 +596,70 @@
         <div class="section-tag"><span>Galeria</span></div>
         <h2 class="section-title">Momentos que<br><em>ficam na memória.</em></h2>
       </div>
-      <div class="gallery-grid reveal" style="transition-delay:0.1s">
-        <div class="gal-item">
-          <div class="gal-inner"><span class="gal-icon">🪗</span><span class="gal-label">No palco</span></div>
-          <div class="gal-hover">
-            <div class="gal-hover-text">No palco do CTG</div>
+
+      <div class="carousel-outer reveal" style="transition-delay:0.1s">
+        <div class="carousel-stage" id="carouselStage">
+
+          <!-- SLOT GRANDE (esquerda) -->
+          <div class="slide-main" id="slotMain">
+            <div class="slide-img" id="imgMain">
+              <div class="slide-placeholder">
+                <div class="ph-icon">🪗</div>
+                <div class="ph-lbl">Foto principal</div>
+              </div>
+            </div>
+            <div class="slide-hover">
+              <div class="hover-tag" id="tagMain">Chula</div>
+              <div class="hover-title" id="titleMain">No palco do CTG</div>
+              <div class="hover-desc" id="descMain">Amadrinhamento ao vivo</div>
+            </div>
+          </div>
+
+          <!-- SLOT SUPERIOR DIREITO -->
+          <div class="slide-secondary" id="slotA">
+            <div class="slide-img" id="imgA">
+              <div class="slide-placeholder">
+                <div class="ph-icon">🤠</div>
+                <div class="ph-lbl">Foto</div>
+              </div>
+            </div>
+            <div class="slide-hover">
+              <div class="hover-tag" id="tagA">Pilcha</div>
+              <div class="hover-title" id="titleA">Pilchado no fandango</div>
+              <div class="hover-desc" id="descA">Tradição que se veste</div>
+            </div>
+          </div>
+
+          <!-- SLOT INFERIOR DIREITO -->
+          <div class="slide-secondary" id="slotB">
+            <div class="slide-img" id="imgB">
+              <div class="slide-placeholder">
+                <div class="ph-icon">🏕️</div>
+                <div class="ph-lbl">Foto</div>
+              </div>
+            </div>
+            <div class="slide-hover">
+              <div class="hover-tag" id="tagB">Galpão</div>
+              <div class="hover-title" id="titleB">Ensaio no galpão</div>
+              <div class="hover-desc" id="descB">Onde tudo começa</div>
+            </div>
+          </div>
+
+        </div><!-- /stage -->
+
+        <!-- CONTROLES -->
+        <div class="carousel-controls">
+          <div class="carousel-dots" id="carouselDots"></div>
+          <div class="carousel-progress">
+            <div class="carousel-progress-fill" id="carouselProg"></div>
+          </div>
+          <div class="carousel-counter"><em id="carouselCur">1</em> / <span id="carouselTot">3</span></div>
+          <div class="carousel-arrows">
+            <button class="carousel-arrow" id="carouselPrev" title="Anterior">&#8592;</button>
+            <button class="carousel-arrow" id="carouselNext" title="Próximo">&#8594;</button>
           </div>
         </div>
-        <div class="gal-item">
-          <div class="gal-inner"><span class="gal-icon">🤠</span><span class="gal-label">Pilcha</span></div>
-          <div class="gal-hover">
-            <div class="gal-hover-text">Pilchado para o fandango</div>
-          </div>
-        </div>
-        <div class="gal-item">
-          <div class="gal-inner"><span class="gal-icon">🎵</span><span class="gal-label">Show</span></div>
-          <div class="gal-hover">
-            <div class="gal-hover-text">Show no interior</div>
-          </div>
-        </div>
-        <div class="gal-item">
-          <div class="gal-inner"><span class="gal-icon">🏕️</span><span class="gal-label">Galpão</span></div>
-          <div class="gal-hover">
-            <div class="gal-hover-text">Ensaio no galpão</div>
-          </div>
-        </div>
-        <div class="gal-item">
-          <div class="gal-inner"><span class="gal-icon">🌾</span><span class="gal-label">Campo</span></div>
-          <div class="gal-hover">
-            <div class="gal-hover-text">Sessão fotográfica</div>
-          </div>
-        </div>
-        <div class="gal-item">
-          <div class="gal-inner"><span class="gal-icon">🪗</span><span class="gal-label">Gaita</span></div>
-          <div class="gal-hover">
-            <div class="gal-hover-text">A gaita que conta histórias</div>
-          </div>
-        </div>
-      </div>
+      </div><!-- /carousel-outer -->
     </div>
   </section>
 
@@ -1686,32 +669,38 @@
       <div class="reveal">
         <div class="section-tag"><span>Vídeos</span></div>
         <h2 class="section-title">Ouça e <em>sinta.</em></h2>
-        <p style="font-size:15px;color:var(--off);font-weight:300;max-width:480px;margin-top:8px">A gaita fala por si —
-          assista às apresentações do Cleyson e sinta a emoção da chula ao vivo.</p>
+        <p style="font-size:15px;color:var(--off);font-weight:300;max-width:480px;margin-top:8px">A gaita fala por si
+          — assista às apresentações do Cleyson e sinta a emoção da chula ao vivo.</p>
       </div>
       <div class="videos-grid reveal" style="transition-delay:0.1s">
+
+        <!-- Vídeo 1 — coloque o arquivo na pasta "videos/" ao lado do HTML -->
         <div class="video-card">
-          <div class="video-thumb" onclick="openVideo('https://www.youtube.com')">
+          <div class="video-thumb" onclick="abrirVideo('videos/video1.mp4')">
             <div class="play-btn">▶</div>
           </div>
           <div class="video-info">
             <div class="video-tag">Chula</div>
             <div class="video-title">Chula no Galpão do CTG</div>
-            <p class="video-desc">Apresentação ao vivo no CTG Herança Gaúcha, Chapecó.</p>
+            <p class="video-desc">Apresentação ao vivo — amadrinhamento de chula.</p>
           </div>
         </div>
+
+        <!-- Vídeo 2 -->
         <div class="video-card">
-          <div class="video-thumb" onclick="openVideo('https://www.youtube.com')">
+          <div class="video-thumb" onclick="abrirVideo('videos/video2.mp4')">
             <div class="play-btn">▶</div>
           </div>
           <div class="video-info">
             <div class="video-tag">Vanerão</div>
             <div class="video-title">Vanerão da Saudade</div>
-            <p class="video-desc">Show em festa de peão no interior do Oeste catarinense.</p>
+            <p class="video-desc">Apresentação no interior do sul do Brasil.</p>
           </div>
         </div>
+
+        <!-- Vídeo 3 -->
         <div class="video-card">
-          <div class="video-thumb" onclick="openVideo('https://www.youtube.com')">
+          <div class="video-thumb" onclick="abrirVideo('videos/video3.mp4')">
             <div class="play-btn">▶</div>
           </div>
           <div class="video-info">
@@ -1720,104 +709,76 @@
             <p class="video-desc">Noite de fandango em homenagem às tradições do RS e SC.</p>
           </div>
         </div>
+
       </div>
       <div style="text-align:center;margin-top:32px" class="reveal">
-        <a href="https://www.youtube.com" target="_blank" class="btn-ghost">Ver todos os vídeos no YouTube →</a>
+        <a href="https://www.instagram.com/cleysonvitor_gaiteiro" target="_blank" class="btn-ghost">Veja mais no instagram →</a>
       </div>
     </div>
   </section>
 
-  <!-- SHOWS -->
-  <section id="shows" class="shows">
+  <!-- AGENDA -->
+  <section id="agenda" class="shows">
     <div class="section-inner">
       <div class="reveal">
         <div class="section-tag"><span>Agenda</span></div>
-        <h2 class="section-title">Próximos <em>shows.</em></h2>
-        <p style="font-size:15px;color:var(--off);font-weight:300;max-width:480px;margin-top:8px">Acompanhe a agenda do
-          Cleyson e não perca um show perto de você.</p>
+        <h2 class="section-title">Próximos <em>amadrinhamentos.</em></h2>
+        <p style="font-size:15px;color:var(--off);font-weight:300;max-width:520px;margin-top:8px">Acompanhe onde o
+          Cleyson estará amadrinhando os chuleadores pelo sul do Brasil.</p>
       </div>
+
       <div class="shows-list reveal" style="transition-delay:0.1s">
 
         <div class="show-item">
           <div class="show-date">
-            <div class="show-day">12</div>
-            <div class="show-month">Abr · 2025</div>
+            <div class="show-day">11-12</div>
+            <div class="show-month">Abr · 2026</div>
           </div>
           <div class="show-info">
-            <div class="show-name">Fandango da Primavera</div>
-            <div class="show-local">📍 CTG Herança Gaúcha · Chapecó, SC</div>
+            <div class="show-name">Rodeio Internacional de Flores da Cunha</div>
+            <div class="show-local">📍 CTG Galpão Serrano · Flores da Cunha, RS</div>
           </div>
-          <div class="show-type">CTG</div>
-          <a href="https://wa.me/5549988489573?text=Olá!%20Quero%20informações%20sobre%20o%20show%20do%20dia%2012%20de%20abril."
+          <div class="show-type">amadrinhamento</div>
+          <a href="https://wa.me/5549988489573?text=Olá!%20Quero%20informações%20sobre%20o%20amadrinhamento%20do%20rodeio%20de%20Flores%20da%20Cunha."
             target="_blank" class="show-btn">Informações</a>
         </div>
 
         <div class="show-item">
           <div class="show-date">
-            <div class="show-day">26</div>
-            <div class="show-month">Abr · 2025</div>
+            <div class="show-day">17-19</div>
+            <div class="show-month">Abr · 2026</div>
           </div>
           <div class="show-info">
-            <div class="show-name">Festa de Peão de Xanxerê</div>
-            <div class="show-local">📍 Parque de Exposições · Xanxerê, SC</div>
+            <div class="show-name">1º Sapateio Internacional do MercoSul</div>
+            <div class="show-local">📍 CTG Aldeia dos Anjos · Gravataí, RS</div>
           </div>
-          <div class="show-type">Festa</div>
-          <a href="https://wa.me/5549988489573?text=Olá!%20Quero%20informações%20sobre%20o%20show%20dia%2026%20de%20abril."
+          <div class="show-type">amadrinhamento</div>
+          <a href="https://wa.me/5549988489573?text=Olá!%20Quero%20informações%20sobre%20o%20amadrinhamento%20do%20Sapateio%20do%20Mercosul."
             target="_blank" class="show-btn">Informações</a>
         </div>
 
         <div class="show-item">
           <div class="show-date">
-            <div class="show-day">10</div>
-            <div class="show-month">Mai · 2025</div>
+            <div class="show-day">05-06</div>
+            <div class="show-month">Set · 2026</div>
           </div>
           <div class="show-info">
-            <div class="show-name">Noite Gaúcha — Rodeio de Chapecó</div>
-            <div class="show-local">📍 Parque Chapecó · Chapecó, SC</div>
-          </div>
-          <div class="show-type">Rodeio</div>
-          <a href="https://wa.me/5549988489573?text=Olá!%20Quero%20informações%20sobre%20o%20show%20dia%2010%20de%20maio."
-            target="_blank" class="show-btn">Informações</a>
-        </div>
-
-        <div class="show-item">
-          <div class="show-date">
-            <div class="show-day">24</div>
-            <div class="show-month">Mai · 2025</div>
-          </div>
-          <div class="show-info">
-            <div class="show-name">Galpão Crioulo — Fandango das Missões</div>
+            <div class="show-name">Evento a confirmar</div>
             <div class="show-local">📍 CTG Querência · São Miguel do Oeste, SC</div>
           </div>
-          <div class="show-type">CTG</div>
-          <a href="https://wa.me/5549988489573?text=Olá!%20Quero%20informações%20sobre%20o%20show%20dia%2024%20de%20maio."
+          <div class="show-type">amadrinhamento</div>
+          <a href="https://wa.me/5549988489573?text=Olá!%20Quero%20informações%20sobre%20o%20amadrinhamento%20em%20São%20Miguel%20do%20Oeste."
             target="_blank" class="show-btn">Informações</a>
-        </div>
-
-        <div class="show-item past">
-          <div class="show-past-badge">Encerrado</div>
-          <div class="show-date">
-            <div class="show-day">15</div>
-            <div class="show-month">Mar · 2025</div>
-          </div>
-          <div class="show-info">
-            <div class="show-name">Semana Farroupilha Antecipada</div>
-            <div class="show-local">📍 CTG Herança Gaúcha · Chapecó, SC</div>
-          </div>
-          <div class="show-type">CTG</div>
-          <a href="#contato" class="show-btn" style="opacity:0.5;pointer-events:none">Encerrado</a>
         </div>
 
       </div>
 
-      <div
-        style="margin-top:32px;padding:28px;background:var(--bg3);border:1px dashed rgba(200,146,42,0.25);text-align:center"
-        class="reveal">
+      <div style="margin-top:32px;padding:28px;background:var(--bg3);border:1px dashed rgba(200,146,42,0.25);text-align:center" class="reveal">
         <p style="font-family:'Crimson Text',serif;font-size:17px;font-style:italic;color:var(--off)">
-          Quer o Cleyson no seu evento? Entre em contato e solicite uma proposta. 🪗
+          Precisa de um gaiteiro pra amadrinhar no seu rodeio ou CTG? Fala com o Cleyson! 🪗
         </p>
-        <a href="#contato" style="display:inline-block;margin-top:16px" class="btn-gold">Solicitar orçamento para show
-          →</a>
+        <a href="https://wa.me/5549988489573?text=Olá%20Cleyson!%20Quero%20saber%20sobre%20disponibilidade%20para%20amadrinhamento."
+          target="_blank" style="display:inline-block;margin-top:16px" class="btn-gold">Verificar disponibilidade →</a>
       </div>
     </div>
   </section>
@@ -1829,18 +790,18 @@
       <div class="contato-grid">
         <div class="reveal">
           <div class="section-tag"><span>Contato</span></div>
-          <h2 class="section-title">Leve a <em>tradição</em><br>ao seu evento.</h2>
+          <h2 class="section-title">Leve a <em>tradição</em><br>ao seu rodeio.</h2>
           <div class="gold-rule"></div>
           <div class="contato-text">
-            <p>Casamentos, aniversários, CTGs, festas de peão, rodeios, eventos corporativos ou culturais — Cleyson leva
-              a emoção da gaita e da chula para onde você precisar.</p>
+            <p>CTGs, rodeios, fandangos, sapateios e eventos de tradição gaúcha — Cleyson leva a emoção da gaita e o
+              pulso certo da chula pra onde o chuleador precisar.</p>
           </div>
           <div class="contato-infos">
             <div class="contato-item">
               <div class="ci-icon">📍</div>
               <div>
                 <div class="ci-label">Localização</div>
-                <div class="ci-value">Chapecó, SC — Região Oeste</div>
+                <div class="ci-value">Oeste do Sul do Brasil</div>
               </div>
             </div>
             <div class="contato-item">
@@ -1854,7 +815,7 @@
               <div class="ci-icon">🗺️</div>
               <div>
                 <div class="ci-label">Atende</div>
-                <div class="ci-value">Chapecó e toda a Região Oeste, SC</div>
+                <div class="ci-value">RS · SC · PR · MS · MT</div>
               </div>
             </div>
             <div class="contato-item">
@@ -1867,39 +828,18 @@
           </div>
         </div>
         <div class="reveal" style="transition-delay:0.15s">
-          <div class="contato-form">
-            <div class="form-title">Solicitar <em>orçamento</em></div>
-            <div class="form-group">
-              <label class="form-label">Seu nome</label>
-              <input type="text" class="form-input" placeholder="Como posso te chamar?">
+          <div class="contato-wpp">
+            <div class="contato-wpp-icon">🪗</div>
+            <div class="contato-wpp-title">Fale direto<br>com o <em>Cleyson</em></div>
+            <div class="contato-wpp-text">
+              A forma mais rápida de tirar dúvidas, verificar disponibilidade e acertar os detalhes do amadrinhamento.
             </div>
-            <div class="form-group">
-              <label class="form-label">WhatsApp</label>
-              <input type="text" class="form-input" placeholder="(49) 9 0000-0000">
-            </div>
-            <div class="form-group">
-              <label class="form-label">Tipo de evento</label>
-              <select class="form-select" id="tipoEvento">
-                <option value="">Selecione o tipo de evento...</option>
-                <option>CTG / Fandango</option>
-                <option>Festa de Peão / Rodeio</option>
-                <option>Casamento</option>
-                <option>Aniversário</option>
-                <option>Evento corporativo</option>
-                <option>Evento cultural</option>
-                <option>Outro</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label class="form-label">Data do evento</label>
-              <input type="date" class="form-input" id="dataEvento">
-            </div>
-            <div class="form-group">
-              <label class="form-label">Detalhes do evento</label>
-              <textarea class="form-textarea"
-                placeholder="Conte mais sobre o evento, localização, número de convidados..."></textarea>
-            </div>
-            <button class="btn-submit" onclick="enviarContato()">Enviar pelo WhatsApp 🎵</button>
+            <div class="contato-wpp-num">(49) 9 8848-9573</div>
+            <a href="https://wa.me/5549988489573?text=Olá%20Cleyson!%20Vi%20seu%20site%20e%20quero%20saber%20sobre%20amadrinhamento."
+              target="_blank" class="btn-wpp">
+              💬 Abrir conversa no WhatsApp
+            </a>
+            <div class="contato-wpp-note">Resposta rápida · Sem formulário · Sem complicação</div>
           </div>
         </div>
       </div>
@@ -1914,12 +854,12 @@
       <div class="cta-orn-diamond"></div>
       <div class="cta-orn-line"></div>
     </div>
-    <h2>Que a gaita toque<br><em>no seu evento.</em></h2>
+    <h2>Que a gaita toque<br><em>na sua chula.</em></h2>
     <p>"Música boa não tem endereço — ela chega no coração."</p>
     <div class="cta-actions">
-      <a href="https://wa.me/5549988489573?text=Olá%20Cleyson!%20Quero%20contratar%20você%20para%20um%20show."
-        target="_blank" class="btn-gold">🎵 Contratar agora</a>
-      <a href="#shows" class="btn-ghost">Ver agenda de shows</a>
+      <a href="https://wa.me/5549988489573?text=Olá%20Cleyson!%20Quero%20saber%20sobre%20amadrinhamento."
+        target="_blank" class="btn-gold">🎵 Falar com o Cleyson</a>
+      <a href="#agenda" class="btn-ghost">Ver agenda de amadrinhamentos</a>
     </div>
   </div>
 
@@ -1928,19 +868,19 @@
     <div class="footer-top">
       <div>
         <div class="footer-logo-name">Cleyson Vitor Furlanetto</div>
-        <div class="footer-logo-sub">🎵 Gaiteiro de Chula · Chapecó, SC</div>
+        <div class="footer-logo-sub">🎵 Gaiteiro de Chula</div>
       </div>
       <ul class="footer-links">
         <li><a href="#bio">Biografia</a></li>
         <li><a href="#galeria">Galeria</a></li>
         <li><a href="#videos">Vídeos</a></li>
-        <li><a href="#shows">Shows</a></li>
+        <li><a href="#agenda">Agenda</a></li>
         <li><a href="#contato">Contato</a></li>
       </ul>
     </div>
     <div class="footer-bottom">
       <div class="footer-copy">© 2025 Cleyson Vitor Furlanetto · Todos os direitos reservados</div>
-      <div class="footer-made">Site desenvolvido por <a href="#">Mateus.Dev</a> · Chapecó, SC</div>
+      <div class="footer-made">Site desenvolvido por <a href="#">Mateus.Dev</a></div>
     </div>
   </footer>
 
@@ -1952,44 +892,173 @@
       d.className = 'dust-dot';
       const size = Math.random() * 3 + 1;
       d.style.cssText = `
-    width:${size}px;height:${size}px;
-    left:${Math.random() * 100}%;
-    top:${Math.random() * 100}%;
-    animation-delay:${Math.random() * 4}s;
-    animation-duration:${2 + Math.random() * 4}s;
-  `;
+        width:${size}px;height:${size}px;
+        left:${Math.random() * 100}%;
+        top:${Math.random() * 100}%;
+        animation-delay:${Math.random() * 4}s;
+        animation-duration:${2 + Math.random() * 4}s;
+      `;
       dust.appendChild(d);
     }
 
     // REVEAL
     const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+      });
     }, { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
-    // VIDEO
-    function openVideo(url) { window.open(url, '_blank'); }
-
-    // CONTATO → WHATSAPP
-    function enviarContato() {
-      const nome = document.querySelectorAll('.form-input')[0].value.trim();
-      const tel = document.querySelectorAll('.form-input')[1].value.trim();
-      const tipo = document.getElementById('tipoEvento').value;
-      const data = document.getElementById('dataEvento').value;
-      const detalhes = document.querySelector('.form-textarea').value.trim();
-
-      if (!nome || !tel || !tipo) {
-        alert('Por favor, preencha pelo menos nome, WhatsApp e tipo de evento.');
-        return;
-      }
-
-      let dataFmt = data ? (() => { const [y, m, d] = data.split('-'); return `${d}/${m}/${y}`; })() : 'A definir';
-
-      const texto = `Olá Cleyson! 🤠\n\nQuero contratar você para um show!\n\n👤 *Nome:* ${nome}\n📞 *Contato:* ${tel}\n🎪 *Tipo de evento:* ${tipo}\n📅 *Data:* ${dataFmt}${detalhes ? `\n📝 *Detalhes:* ${detalhes}` : ''}`;
-      window.open(`https://wa.me/5549988489573?text=${encodeURIComponent(texto)}`, '_blank');
+    // VIDEO MODAL — abre o vídeo local em modal
+    function abrirVideo(src) {
+      const modal = document.getElementById('videoModal');
+      const video = document.getElementById('modalVideo');
+      video.src = src;
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      video.play();
     }
 
-    // SMOOTH SCROLL
+    function fecharModal() {
+      const modal = document.getElementById('videoModal');
+      const video = document.getElementById('modalVideo');
+      video.pause();
+      video.src = '';
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    // Fecha ao clicar no fundo escuro
+    function closeVideoModal(e) {
+      if (e.target === document.getElementById('videoModal')) fecharModal();
+    }
+
+    // Fecha com ESC
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') fecharModal(); });
+
+    /* =====================================================
+       CARROSSEL DE GALERIA
+       Para adicionar fotos: coloque os arquivos numa pasta
+       "fotos/" ao lado do HTML e preencha o campo "src"
+       em cada slide abaixo.
+       Cada "slide" exibe 3 fotos: uma grande (main) e
+       duas menores (a e b).
+       ===================================================== */
+    const carouselSlides = [
+      {
+        main: { src: 'img/fotoenart3.jpeg', tag: 'conquista', title: 'ENART 2025', desc: 'Melhor amadrinhador de chula ENART 2025' },
+        a:    { src: 'img/fotoenart2.jpeg', tag: 'agradecimento', title: 'ENART 2025', desc: 'Abraço com o chuleador campeão que confiou no nosso trabalho' },
+        b:    { src: 'img/fotoenart1.jpeg', tag: 'troféu', title: 'ENART 2025', desc: 'Recebendo o troféu com muito amor pelo o que eu faço' },
+      },
+      {
+        main: { src: 'img/fotofegams2.jpeg', tag: 'conquista', title: 'FEGAMS 2025', desc: 'Melhor amadrinhador de chula FEGAMS 2025' },
+        a:    { src: 'img/fotofegams1.jpeg', tag: 'família', title: 'FEGAMS 2025', desc: 'Essa foto representa muito para mim, quem me deu todo a apoio para ir ao Mato Grosso do Sul' },
+        b:    { src: 'img/fotofegams4.jpeg', tag: 'desafio', title: 'FEGAMS 2025', desc: 'Primeira vez tocando danças tradicionais, obrigado pela confiança!' },
+      },
+      {
+        main: { src: 'img/fotovaca1.jpeg', tag: 'amadrinhamento', title: 'VACARIA 2026', desc: 'Mais de 400 chuleadores confiaram no meu trabalho' },
+        a:    { src: 'img/fotovaca2.jpeg', tag: 'músicos', title: 'VACARIA 2026', desc: 'No palco, ao lado de renomados músicos' },
+        b:    { src: 'img/fotovaca3.jpeg', tag: 'parceria', title: 'VACARIA 2026', desc: 'Mais de 30 horas de chula' },
+      },
+      {
+        main: { src: 'img/fotonacional2.jpeg', tag: 'rodeio', title: '16º FENART', desc: 'Cristalina-Goias' },
+        a:    { src: 'img/fotonacional1.jpeg', tag: 'irmandade', title: '16º FENART', desc: 'Na parceria do meu amigo e músico Andrey Dallagassa' },
+        b:    { src: 'img/fotonacional3.jpeg', tag: 'rodeio', title: '16º FENART', desc: 'Mais de 1000km rodados, que baita rodeio!' },
+      },
+      {
+        main: { src: 'img/fotonacional4.jpeg', tag: 'rodeio', title: '16º FENART', desc: 'Cristalina-Goias' },
+        a:    { src: 'img/fototocando2.jpeg', tag: 'gaita', title: 'Minha paixão', desc: 'Eu amo meu trabalho' },
+        b:    { src: 'img/fotosapateio1.jpeg', tag: 'rodeio', title: 'Sapateio Nacional de Lagoa Vermelha 2024', desc: 'Lagoa Vermelha, RS - Capital nacional da Chula' },
+      },
+    ];
+
+    (function() {
+      const INTERVAL = 4500;
+      let curSlide = 0;
+      let autoTimer, progTimer;
+
+      const stage    = document.getElementById('carouselStage');
+      const progEl   = document.getElementById('carouselProg');
+      const curEl    = document.getElementById('carouselCur');
+      const totEl    = document.getElementById('carouselTot');
+      const dotsEl   = document.getElementById('carouselDots');
+
+      totEl.textContent = carouselSlides.length;
+
+      function applySlot(imgId, tagId, titleId, descId, iconEl, data) {
+        const img = document.getElementById(imgId);
+        const ph  = img.querySelector('.slide-placeholder');
+        if (data.src) {
+          img.style.backgroundImage = "url('" + data.src + "')";
+          ph.style.display = 'none';
+        } else {
+          img.style.backgroundImage = 'none';
+          ph.style.display = '';
+          ph.querySelector('.ph-icon').textContent = data.icon;
+        }
+        document.getElementById(tagId).textContent   = data.tag;
+        document.getElementById(titleId).textContent = data.title;
+        document.getElementById(descId).textContent  = data.desc;
+      }
+
+      function applyData(s) {
+        applySlot('imgMain','tagMain','titleMain','descMain', null, s.main);
+        applySlot('imgA',   'tagA',   'titleA',   'descA',   null, s.a);
+        applySlot('imgB',   'tagB',   'titleB',   'descB',   null, s.b);
+      }
+
+      function resetProgress() {
+        clearTimeout(progTimer);
+        progEl.style.transition = 'none';
+        progEl.style.width = '0%';
+        progTimer = setTimeout(function() {
+          progEl.style.transition = 'width ' + INTERVAL + 'ms linear';
+          progEl.style.width = '100%';
+        }, 40);
+      }
+
+      function updateDots(i) {
+        document.querySelectorAll('.carousel-dot').forEach(function(d, j) {
+          d.classList.toggle('active', j === i);
+        });
+      }
+
+      function goTo(i, animate) {
+        clearTimeout(autoTimer);
+        curSlide = ((i % carouselSlides.length) + carouselSlides.length) % carouselSlides.length;
+        curEl.textContent = curSlide + 1;
+        updateDots(curSlide);
+        if (animate !== false) {
+          stage.classList.add('fading');
+          setTimeout(function() {
+            applyData(carouselSlides[curSlide]);
+            stage.classList.remove('fading');
+          }, 340);
+        } else {
+          applyData(carouselSlides[curSlide]);
+        }
+        resetProgress();
+        autoTimer = setTimeout(function() { goTo(curSlide + 1); }, INTERVAL);
+      }
+
+      // Dots
+      carouselSlides.forEach(function(_, i) {
+        var d = document.createElement('button');
+        d.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+        d.setAttribute('title', 'Slide ' + (i + 1));
+        d.addEventListener('click', function() { goTo(i); });
+        dotsEl.appendChild(d);
+      });
+
+      document.getElementById('carouselPrev').addEventListener('click', function() { goTo(curSlide - 1); });
+      document.getElementById('carouselNext').addEventListener('click', function() { goTo(curSlide + 1); });
+
+      // Pause on hover
+      stage.addEventListener('mouseenter', function() { clearTimeout(autoTimer); });
+      stage.addEventListener('mouseleave', function() { autoTimer = setTimeout(function() { goTo(curSlide + 1); }, INTERVAL); });
+
+      goTo(0, false);
+    })();
     document.querySelectorAll('a[href^="#"]').forEach(a => {
       a.addEventListener('click', e => {
         e.preventDefault();
